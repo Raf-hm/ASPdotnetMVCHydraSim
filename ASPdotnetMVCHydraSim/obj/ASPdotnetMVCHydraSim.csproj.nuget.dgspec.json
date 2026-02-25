@@ -1,17 +1,17 @@
 {
   "format": 1,
   "restore": {
-    "C:\\Users\\rafhe\\source\\repos\\ASPdotnetMVCHydraSim\\ASPdotnetMVCHydraSim\\ASPdotnetMVCHydraSim.csproj": {}
+    "C:\\Users\\rafhe\\Documents\\GitHub\\ASPdotnetMVCHydraSim\\ASPdotnetMVCHydraSim\\ASPdotnetMVCHydraSim.csproj": {}
   },
   "projects": {
-    "C:\\Users\\rafhe\\source\\repos\\ASPdotnetMVCHydraSim\\ASPdotnetMVCHydraSim\\ASPdotnetMVCHydraSim.csproj": {
+    "C:\\Users\\rafhe\\Documents\\GitHub\\ASPdotnetMVCHydraSim\\ASPdotnetMVCHydraSim\\ASPdotnetMVCHydraSim.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "C:\\Users\\rafhe\\source\\repos\\ASPdotnetMVCHydraSim\\ASPdotnetMVCHydraSim\\ASPdotnetMVCHydraSim.csproj",
+        "projectUniqueName": "C:\\Users\\rafhe\\Documents\\GitHub\\ASPdotnetMVCHydraSim\\ASPdotnetMVCHydraSim\\ASPdotnetMVCHydraSim.csproj",
         "projectName": "ASPdotnetMVCHydraSim",
-        "projectPath": "C:\\Users\\rafhe\\source\\repos\\ASPdotnetMVCHydraSim\\ASPdotnetMVCHydraSim\\ASPdotnetMVCHydraSim.csproj",
+        "projectPath": "C:\\Users\\rafhe\\Documents\\GitHub\\ASPdotnetMVCHydraSim\\ASPdotnetMVCHydraSim\\ASPdotnetMVCHydraSim.csproj",
         "packagesPath": "C:\\Users\\rafhe\\.nuget\\packages\\",
-        "outputPath": "C:\\Users\\rafhe\\source\\repos\\ASPdotnetMVCHydraSim\\ASPdotnetMVCHydraSim\\obj\\",
+        "outputPath": "C:\\Users\\rafhe\\Documents\\GitHub\\ASPdotnetMVCHydraSim\\ASPdotnetMVCHydraSim\\obj\\",
         "projectStyle": "PackageReference",
         "fallbackFolders": [
           "C:\\Program Files (x86)\\Microsoft Visual Studio\\Shared\\NuGetPackages"
