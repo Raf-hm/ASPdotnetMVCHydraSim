@@ -5,29 +5,39 @@
 <link rel="stylesheet" href="~/css/Library.css" asp-append-version="true" />
 
 <div class="grid-container">
-    <div class="grid-item">
-        <img src="/images/pump.png" alt="Pump Simulation" />
-        <h3>Pump Simulation</h3>
-        <p>Simuleer een enkel pomp-systeem met druk en flow.</p>
-    </div>
-    <div class="grid-item">
-        <img src="/images/cylinder.png" alt="Cylinder Simulation" />
-        <h3>Cylinder Simulation</h3>
-        <p>Bekijk hoe een hydraulische cilinder beweegt met weerstand.</p>
-    </div>
-    <div class="grid-item">
-        <img src="/images/network.png" alt="Network Simulation" />
-        <h3>Network Simulation</h3>
-        <p>Simuleer een volledig hydraulisch netwerk van componenten.</p>
-    </div>
-    <div class="grid-item">
-        <img src="/images/network.png" alt="Network Simulation" />
-        <h3>Network Simulation</h3>
-        <p>Simuleer een volledig hydraulisch netwerk van componenten.</p>
-    </div>
-    <div class="grid-item">
-        <img src="/images/network.png" alt="Network Simulation" />
-        <h3>Network Simulation</h3>
-        <p>Simuleer een volledig hydraulisch netwerk van componenten.</p>
-    </div>
+    <a asp-controller="Simulation"asp-action="Run"asp-route-id="0">
+        <div class="grid-item">
+            <img src="/images/pump.png"/>
+            <h3>Pump Simulation</h3>
+            <p>Simuleer een enkel pomp-systeem met druk en flow.</p>
+        </div>
+    </a>
+    <a asp-controller="Simulation" asp-action="Run" asp-route-id="1">
+        <div class="grid-item">
+            <img src="/images/pump.png"/>
+            <h3>Pump Simulation</h3>
+            <p>Simuleer een enkel pomp-systeem met druk en flow.</p>
+        </div>
+    </a>
+    <a asp-controller="Simulation" asp-action="Run" asp-route-id="2">
+        <div class="grid-item">
+            <img src="/images/pump.png"/>
+            <h3>Pump Simulation</h3>
+            <p>Simuleer een enkel pomp-systeem met druk en flow.</p>
+        </div>
+    </a>
+    <a asp-controller="Simulation" asp-action="Run" asp-route-id="3">
+        <div class="grid-item">
+            <img src="/images/pump.png"/>
+            <h3>Pump Simulation</h3>
+            <p>Simuleer een enkel pomp-systeem met druk en flow.</p>
+        </div>
+    </a>
+    <a asp-controller="Simulation" asp-action="Run" asp-route-id="4">
+        <div class="grid-item">
+            <img src="/images/pump.png"/>
+            <h3>Pump Simulation</h3>
+            <p>Simuleer een enkel pomp-systeem met druk en flow.</p>
+        </div>
+    </a>
 </div>

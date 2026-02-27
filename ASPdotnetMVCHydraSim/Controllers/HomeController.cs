@@ -10,29 +10,7 @@ namespace ASPdotnetMVCHydraSim.Controllers
     {
         public IActionResult Index()
         {
-            var simulation = new HydraulicSimulation();
-
-            simulation.AddComponent(new Pump { PressureOutput = 600 });
-            simulation.AddComponent(new Pipe());
-            simulation.AddComponent(new PressureGauge());
-            simulation.AddComponent(new Pipe());
-            simulation.AddComponent(new Resistance { PressureDrop = 300 });
-            simulation.AddComponent(new Pipe());
-            simulation.AddComponent(new PressureGauge());
-            simulation.AddComponent(new Pipe());
-            simulation.AddComponent(new Resistance { PressureDrop = 200 });
-            simulation.AddComponent(new Pipe());
-            simulation.AddComponent(new PressureGauge());
-            simulation.AddComponent(new Pipe());
-            simulation.AddComponent(new Resistance { PressureDrop = 100 });
-            simulation.AddComponent(new Pipe());
-            simulation.AddComponent(new PressureGauge());
-            simulation.AddComponent(new Pipe());
-            simulation.AddComponent(new Tank());
-
-            simulation.Run();
-
-            return View(simulation.Results);
+            return View();
         }
 
         public IActionResult Library()
