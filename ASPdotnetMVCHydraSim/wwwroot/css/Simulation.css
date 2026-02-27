@@ -6,12 +6,12 @@
 
 .component-item {
     list-style: none;
-    flex: 0 0 100px; /* EXACT 100px breed */
+    flex: 0 0 100px;
     width: 100px;
     max-width: 100px;
     text-align: center;
     box-sizing: border-box;
-    overflow: hidden; /* voorkomt uitrekken door tekst */
+    overflow: hidden;
 }
 
 .component {
@@ -19,21 +19,20 @@
     height: 100px;
 }
 
-/* 🔴 Pump */
 .Pump {
     background-image: url('../Sprites/motor.png');
     background-size: cover;
     background-position: center;
 }
 
-/* 🔴 Pipe */
+
 .Pipe {
     height: 20px;
     margin: 40px 0;
     background-color: red;
 }
 
-/* 🔴 PressureGauge */
+
 .PressureGauge {
     background-image: url('../Sprites/pressuregauge.png');
     background-size: contain;
@@ -41,7 +40,7 @@
     background-position: center;
 }
 
-/* 🔴 Resistance */
+
 .Resistance {
     background-image: url('../Sprites/resistance.png');
     background-size: contain;
@@ -58,7 +57,4 @@
 
 .label {
     font-size: 13px;
-    white-space: nowrap; /* voorkomt dat tekst breder wordt */
-    overflow: hidden;
-    text-overflow: ellipsis; /* toont ... als het te lang is */
 }
