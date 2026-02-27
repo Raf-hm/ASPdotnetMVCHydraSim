@@ -1,4 +1,4 @@
-﻿<!DOCTYPE html>
+﻿@* <!DOCTYPE html>
 <html lang="en">
 <head>
     <meta charset="utf-8" />
@@ -36,7 +36,7 @@
     </header>
     <div class="container">
         <main role="main" class="pb-3">
-            @RenderBody()
+           
         </main>
     </div>
 
@@ -50,4 +50,92 @@
 </body>
 </html>
 
+ *@
 
+
+
+
+
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>ASPdotnetMVCHydraSim</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    
+    <style>
+            * {
+                margin: 0;
+                padding: 0;
+                box-sizing: border-box;
+            }
+
+            body {
+                font-family: Arial, Helvetica, sans-serif;
+                background-color: #f4f4f4;
+            }
+
+            header {
+                background-color: #1f1f1f;
+                padding: 15px 40px;
+                display: flex;
+                justify-content: space-between;
+                align-items: center;
+            }
+
+            .logo a {
+                color: white;
+                text-decoration: none;
+                font-size: 22px;
+                font-weight: bold;
+                letter-spacing: 0.5px;
+            }
+
+            #navbar {
+                list-style: none;
+                display: flex;
+                gap: 25px;
+            }
+
+                #navbar li a {
+                    color: white;
+                    text-decoration: none;
+                    font-size: 16px;
+                    transition: opacity 0.2s ease-in-out;
+                }
+
+                    #navbar li a:hover {
+                        opacity: 0.7;
+                    }
+
+            main {
+                padding: 40px;
+            }
+    </style>
+</head>
+<body>
+
+    <header>
+        <div class="logo">
+            <a class="navbar-brand" asp-area="" asp-controller="Home" asp-action="Index">ASPdotnetMVCHydraSim</a>
+        </div>
+
+        <nav>
+            <ul id="navbar">
+                <li>
+                    <a asp-controller="Home" asp-action="Builder">Builder</a>
+                </li>
+                <li>
+                    <a asp-controller="Home" asp-action="Library">Library</a>
+                </li>
+            </ul>
+        </nav>
+    </header>
+
+    <main>
+        @RenderBody()
+    </main>
+
+</body>
+</html>
