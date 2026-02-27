@@ -120,7 +120,6 @@ C:\Users\rafhe\Documents\GitHub\ASPdotnetMVCHydraSim\ASPdotnetMVCHydraSim\obj\De
 C:\Users\rafhe\Documents\GitHub\ASPdotnetMVCHydraSim\ASPdotnetMVCHydraSim\obj\Debug\net10.0\scopedcss\Views\Shared\_Layout.cshtml.rz.scp.css
 C:\Users\rafhe\Documents\GitHub\ASPdotnetMVCHydraSim\ASPdotnetMVCHydraSim\obj\Debug\net10.0\scopedcss\bundle\ASPdotnetMVCHydraSim.styles.css
 C:\Users\rafhe\Documents\GitHub\ASPdotnetMVCHydraSim\ASPdotnetMVCHydraSim\obj\Debug\net10.0\scopedcss\projectbundle\ASPdotnetMVCHydraSim.bundle.scp.css
-C:\Users\rafhe\Documents\GitHub\ASPdotnetMVCHydraSim\ASPdotnetMVCHydraSim\obj\Debug\net10.0\compressed\8sd2ifqd48-{0}-b9sayid5wm-b9sayid5wm.gz
 C:\Users\rafhe\Documents\GitHub\ASPdotnetMVCHydraSim\ASPdotnetMVCHydraSim\obj\Debug\net10.0\compressed\7f1cp6oh2b-{0}-61n19gt1b8-61n19gt1b8.gz
 C:\Users\rafhe\Documents\GitHub\ASPdotnetMVCHydraSim\ASPdotnetMVCHydraSim\obj\Debug\net10.0\compressed\t9xbzytva6-{0}-xtxxf3hu2r-xtxxf3hu2r.gz
 C:\Users\rafhe\Documents\GitHub\ASPdotnetMVCHydraSim\ASPdotnetMVCHydraSim\obj\Debug\net10.0\compressed\qiw6146n6b-{0}-bqjiyaj88i-bqjiyaj88i.gz
@@ -200,3 +199,5 @@ C:\Users\rafhe\Documents\GitHub\ASPdotnetMVCHydraSim\ASPdotnetMVCHydraSim\obj\De
 C:\Users\rafhe\Documents\GitHub\ASPdotnetMVCHydraSim\ASPdotnetMVCHydraSim\bin\Debug\net10.0\Microsoft.EntityFrameworkCore.dll
 C:\Users\rafhe\Documents\GitHub\ASPdotnetMVCHydraSim\ASPdotnetMVCHydraSim\bin\Debug\net10.0\Microsoft.EntityFrameworkCore.Abstractions.dll
 C:\Users\rafhe\Documents\GitHub\ASPdotnetMVCHydraSim\ASPdotnetMVCHydraSim\obj\Debug\net10.0\ASPdotne.A8EB14BE.Up2Date
+C:\Users\rafhe\Documents\GitHub\ASPdotnetMVCHydraSim\ASPdotnetMVCHydraSim\obj\Debug\net10.0\compressed\cqj500sm0p-{0}-b9sayid5wm-b9sayid5wm.gz
+C:\Users\rafhe\Documents\GitHub\ASPdotnetMVCHydraSim\ASPdotnetMVCHydraSim\obj\Debug\net10.0\compressed\0zn5a8eies-{0}-630e4z2k28-630e4z2k28.gz
