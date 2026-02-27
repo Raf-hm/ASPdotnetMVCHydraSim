@@ -195,3 +195,8 @@ C:\Users\rafhe\Documents\GitHub\ASPdotnetMVCHydraSim\ASPdotnetMVCHydraSim\obj\De
 C:\Users\rafhe\Documents\GitHub\ASPdotnetMVCHydraSim\ASPdotnetMVCHydraSim\obj\Debug\net10.0\ASPdotnetMVCHydraSim.pdb
 C:\Users\rafhe\Documents\GitHub\ASPdotnetMVCHydraSim\ASPdotnetMVCHydraSim\obj\Debug\net10.0\ASPdotnetMVCHydraSim.genruntimeconfig.cache
 C:\Users\rafhe\Documents\GitHub\ASPdotnetMVCHydraSim\ASPdotnetMVCHydraSim\obj\Debug\net10.0\ref\ASPdotnetMVCHydraSim.dll
+C:\Users\rafhe\Documents\GitHub\ASPdotnetMVCHydraSim\ASPdotnetMVCHydraSim\obj\Debug\net10.0\compressed\1xtotk8ic7-{0}-di8s1u9bmw-di8s1u9bmw.gz
+C:\Users\rafhe\Documents\GitHub\ASPdotnetMVCHydraSim\ASPdotnetMVCHydraSim\obj\Debug\net10.0\ASPdotnetMVCHydraSim.csproj.AssemblyReference.cache
+C:\Users\rafhe\Documents\GitHub\ASPdotnetMVCHydraSim\ASPdotnetMVCHydraSim\bin\Debug\net10.0\Microsoft.EntityFrameworkCore.dll
+C:\Users\rafhe\Documents\GitHub\ASPdotnetMVCHydraSim\ASPdotnetMVCHydraSim\bin\Debug\net10.0\Microsoft.EntityFrameworkCore.Abstractions.dll
+C:\Users\rafhe\Documents\GitHub\ASPdotnetMVCHydraSim\ASPdotnetMVCHydraSim\obj\Debug\net10.0\ASPdotne.A8EB14BE.Up2Date

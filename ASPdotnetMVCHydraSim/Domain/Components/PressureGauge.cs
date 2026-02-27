@@ -1,6 +1,6 @@
 ﻿namespace ASPdotnetMVCHydraSim.Domain.Components
 {
-    public class pressuregauge : HydraulicComponent
+    public class PressureGauge : HydraulicComponent
     {
         private int _incomingPressure;
         public override int Process(int incomingPressure)
