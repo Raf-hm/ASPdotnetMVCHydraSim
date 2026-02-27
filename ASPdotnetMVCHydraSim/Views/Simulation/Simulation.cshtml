@@ -1,6 +1,12 @@
-﻿<ul>
+﻿<link href="~/css/Simulation.css" rel="stylesheet" />
+
+<ul class="simulation">
     @foreach (var result in Model)
     {
-        <li>@result</li>
+        <li class="component-item">
+            <div class="component @result"></div>
+            <div class="label">@result</div>
+        </li>
     }
 </ul>
+
