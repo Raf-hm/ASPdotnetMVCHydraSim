@@ -1,8 +1,12 @@
 {
   "version": 2,
-  "dgSpecHash": "L8nfKqivvl8=",
+  "dgSpecHash": "fRUK5BgZDSM=",
   "success": true,
   "projectFilePath": "C:\\Users\\rafhe\\Documents\\GitHub\\ASPdotnetMVCHydraSim\\ASPdotnetMVCHydraSim\\ASPdotnetMVCHydraSim.csproj",
-  "expectedPackageFiles": [],
+  "expectedPackageFiles": [
+    "C:\\Users\\rafhe\\.nuget\\packages\\microsoft.entityframeworkcore\\10.0.3\\microsoft.entityframeworkcore.10.0.3.nupkg.sha512",
+    "C:\\Users\\rafhe\\.nuget\\packages\\microsoft.entityframeworkcore.abstractions\\10.0.3\\microsoft.entityframeworkcore.abstractions.10.0.3.nupkg.sha512",
+    "C:\\Users\\rafhe\\.nuget\\packages\\microsoft.entityframeworkcore.analyzers\\10.0.3\\microsoft.entityframeworkcore.analyzers.10.0.3.nupkg.sha512"
+  ],
   "logs": []
 }

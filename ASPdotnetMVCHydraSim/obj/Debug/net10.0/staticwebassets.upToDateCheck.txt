@@ -1,3 +1,4 @@
+wwwroot\css\Library.css
 wwwroot\css\site.css
 wwwroot\favicon.ico
 wwwroot\js\site.js
@@ -123,3 +124,4 @@ C:\Users\rafhe\Documents\GitHub\ASPdotnetMVCHydraSim\ASPdotnetMVCHydraSim\wwwroo
 C:\Users\rafhe\Documents\GitHub\ASPdotnetMVCHydraSim\ASPdotnetMVCHydraSim\wwwroot\js\site.js
 C:\Users\rafhe\Documents\GitHub\ASPdotnetMVCHydraSim\ASPdotnetMVCHydraSim\wwwroot\favicon.ico
 C:\Users\rafhe\Documents\GitHub\ASPdotnetMVCHydraSim\ASPdotnetMVCHydraSim\wwwroot\css\site.css
+C:\Users\rafhe\Documents\GitHub\ASPdotnetMVCHydraSim\ASPdotnetMVCHydraSim\wwwroot\css\Library.css

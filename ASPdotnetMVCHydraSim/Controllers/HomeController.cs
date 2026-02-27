@@ -14,19 +14,19 @@ namespace ASPdotnetMVCHydraSim.Controllers
 
             simulation.AddComponent(new Pump { PressureOutput = 600 });
             simulation.AddComponent(new Pipe());
-            simulation.AddComponent(new pressuregauge());
+            simulation.AddComponent(new PressureGauge());
             simulation.AddComponent(new Pipe());
             simulation.AddComponent(new Resistance { PressureDrop = 300 });
             simulation.AddComponent(new Pipe());
-            simulation.AddComponent(new pressuregauge());
+            simulation.AddComponent(new PressureGauge());
             simulation.AddComponent(new Pipe());
             simulation.AddComponent(new Resistance { PressureDrop = 200 });
             simulation.AddComponent(new Pipe());
-            simulation.AddComponent(new pressuregauge());
+            simulation.AddComponent(new PressureGauge());
             simulation.AddComponent(new Pipe());
             simulation.AddComponent(new Resistance { PressureDrop = 100 });
             simulation.AddComponent(new Pipe());
-            simulation.AddComponent(new pressuregauge());
+            simulation.AddComponent(new PressureGauge());
             simulation.AddComponent(new Pipe());
             simulation.AddComponent(new Tank());
 
