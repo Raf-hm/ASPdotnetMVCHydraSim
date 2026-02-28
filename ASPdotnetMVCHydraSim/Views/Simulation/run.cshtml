@@ -17,9 +17,17 @@
         else
         {
             <li class="component-item">
-                <div class="component @component.GetType().Name"></div>
+                <div class="component @component.GetType().Name"><div class="label">@component.GetInfo()</div> </div>
             </li>
         }
     }
 </ul>
 
+
+
+
+@* <ul class="simulation">
+    @foreach (var result in Model) {
+    <li class="component-item"> <div class="component @result"></div> <div class="label">@result</div> </li>
+    }
+</ul> *@

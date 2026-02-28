@@ -1,7 +1,6 @@
 ﻿using ASPdotnetMVCHydraSim.Domain.Components;
 using ASPdotnetMVCHydraSim.Domain.Simulation;
 using Microsoft.AspNetCore.Mvc;
-using ASPdotnetMVCHydraSim.Domain.Simulation;
 
 namespace ASPdotnetMVCHydraSim.Controllers
 {
@@ -11,16 +10,12 @@ namespace ASPdotnetMVCHydraSim.Controllers
         {
             var simulation = BuildSimulation(id);
 
-            // Zorg dat pomp = totale resistance
             simulation.SyncPumpWithResistance();
 
-            // Bereken alle drukken
             simulation.Run();
 
-            // Geef max druk mee voor kleur-berekening
             ViewBag.MaxPressure = simulation.MaxPressure;
 
-            // Stuur alle componenten naar de view
             return View(simulation.Components);
         }
 
@@ -51,7 +46,7 @@ namespace ASPdotnetMVCHydraSim.Controllers
             else if (id == 1)
             {
                 simulation.AddComponent(new Pump());
-                simulation.AddComponent(new Resistance { PressureDrop = 200 });
+                simulation.AddComponent(new Pipe());
                 simulation.AddComponent(new Tank());
             }
             else if (id == 2)
@@ -64,14 +59,11 @@ namespace ASPdotnetMVCHydraSim.Controllers
             {
                 simulation.AddComponent(new Pump());
                 simulation.AddComponent(new Pipe());
-                simulation.AddComponent(new Resistance { PressureDrop = 100 });
                 simulation.AddComponent(new Tank());
             }
             else if (id == 4)
             {
                 simulation.AddComponent(new Pump());
-                simulation.AddComponent(new Pipe());
-                simulation.AddComponent(new Resistance { PressureDrop = 50 });
                 simulation.AddComponent(new Pipe());
                 simulation.AddComponent(new Tank());
             }

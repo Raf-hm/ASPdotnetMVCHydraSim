@@ -16,22 +16,17 @@
         {
             int p = CurrentPressure;
 
-            // Vacuum
             if (p < 0)
                 return "#ff00ff";
 
-            // Geen druk
             if (p == 0)
                 return "#0000ff";
 
-            // 1 druk = geel
             if (p == 1)
                 return "#ffff00";
 
-            // Boven 1 → vloeiende overgang geel → rood
             double ratio = (double)p / maxPressure;
 
-            // Clamp tussen 0 en 1
             ratio = Math.Max(0, Math.Min(1, ratio));
 
             int red = 255;

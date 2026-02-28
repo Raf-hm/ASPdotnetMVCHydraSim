@@ -8,10 +8,8 @@ namespace ASPdotnetMVCHydraSim.Domain.Simulation
     {
         private List<HydraulicComponent> _components;
 
-        // Wordt gebruikt in je View
         public IReadOnlyList<HydraulicComponent> Components => _components;
 
-        // Veilig: crasht niet als er geen pump is
         public int MaxPressure =>
             _components.OfType<Pump>().FirstOrDefault()?.PressureOutput ?? 0;
 
@@ -46,7 +44,6 @@ namespace ASPdotnetMVCHydraSim.Domain.Simulation
 
         public void Run()
         {
-            // Zorg dat pomp altijd gelijk is aan totale weerstand
             SyncPumpWithResistance();
 
             int currentPressure = 0;
