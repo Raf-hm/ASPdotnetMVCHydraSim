@@ -1,0 +1,25 @@
+﻿@using ASPdotnetMVCHydraSim.Domain.Components
+<link href="~/css/Simulation.css" rel="stylesheet" />
+
+<ul class="simulation">
+    @foreach (var component in Model)
+    {
+        if (component is Pipe pipe)
+        {
+            var color = pipe.GetPipeColor((int)ViewBag.MaxPressure);
+
+            <li class="component-item">
+                <div class="component Pipe"
+                     style="background-color:@color">
+                </div>
+            </li>
+        }
+        else
+        {
+            <li class="component-item">
+                <div class="component @component.GetType().Name"></div>
+            </li>
+        }
+    }
+</ul>
+
