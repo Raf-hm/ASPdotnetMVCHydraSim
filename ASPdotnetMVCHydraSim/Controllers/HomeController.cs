@@ -2,7 +2,7 @@ using ASPdotnetMVCHydraSim.Domain.Components;
 using ASPdotnetMVCHydraSim.Models;
 using Microsoft.AspNetCore.Mvc;
 using System.Diagnostics;
-using YourProjectName.Domain.Simulation;
+using ASPdotnetMVCHydraSim.Domain.Simulation;
 
 namespace ASPdotnetMVCHydraSim.Controllers
 {
