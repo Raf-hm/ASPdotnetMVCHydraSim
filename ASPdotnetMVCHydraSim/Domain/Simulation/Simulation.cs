@@ -1,4 +1,5 @@
 ﻿using ASPdotnetMVCHydraSim.Domain.Components;
+using Microsoft.AspNetCore.Mvc;
 using System.Collections.Generic;
 using System.Linq;
 
@@ -6,12 +7,11 @@ namespace ASPdotnetMVCHydraSim.Domain.Simulation
 {
     public class HydraulicSimulation
     {
-        private List<HydraulicComponent> _components;
+        public List<HydraulicComponent> _components;
 
         public IReadOnlyList<HydraulicComponent> Components => _components;
 
-        public int MaxPressure =>
-            _components.OfType<Pump>().FirstOrDefault()?.PressureOutput ?? 0;
+        public int MaxPressure => _components.OfType<Pump>().FirstOrDefault()?.PressureOutput ?? 0;
 
         public HydraulicSimulation()
         {
@@ -20,6 +20,7 @@ namespace ASPdotnetMVCHydraSim.Domain.Simulation
 
         public void AddComponent(HydraulicComponent component)
         {
+            component.ComponentId = _components.Count;
             _components.Add(component);
         }
 
