@@ -8,9 +8,13 @@
             _incomingPressure = incomingPressure;
             return incomingPressure;
         }
-        public override string GetInfo()
+        public override string GetName()
         {
             return $"PressureGauge {_incomingPressure}";
+        }
+        public override string GetValue()
+        {
+            return $"{_incomingPressure}";
         }
     }
 }

@@ -4,6 +4,7 @@
     {
         public int CurrentPressure { get; set; }
         public abstract int Process(int incomingPressure);
-        public abstract string GetInfo();
+        public abstract string GetName();
+        public abstract string GetValue();
     }
 }

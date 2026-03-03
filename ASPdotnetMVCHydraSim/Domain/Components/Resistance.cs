@@ -9,9 +9,13 @@
             return incomingPressure - PressureDrop;
         }
 
-        public override string GetInfo()
+        public override string GetName()
         {
-            return $"Resistance {PressureDrop}";
+            return $"Resistance";
+        }
+        public override string GetValue()
+        {
+            return $"{PressureDrop}";
         }
     }
 }
