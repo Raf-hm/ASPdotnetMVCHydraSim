@@ -1,6 +1,11 @@
 ﻿@using ASPdotnetMVCHydraSim.Domain.Components
 <link href="~/css/Simulation.css" rel="stylesheet" />
 
+<form method="post" action="/Simulation/Reset">
+    <input type="hidden" name="id" value="0" />
+    <button type="submit">Reset</button>
+</form>
+
 <ul class="simulation">
     @foreach (var component in Model)
     {
@@ -9,7 +14,7 @@
             var color = pipe.GetPipeColor((int)ViewBag.MaxPressure);
 
             <li class="component-item">
-                <div class="component Pipe"
+                <div id="@component.ComponentId" class="component Pipe"
                      style="background-color:@color">
                 </div>
             </li>
@@ -17,7 +22,7 @@
         else
         {
             <li class="component-item">
-                <div class="component @component.GetType().Name"><div class="label">@component.GetValue()</div> </div>
+                <div id="@component.ComponentId" class="component @component.GetType().Name"><div class="label">@component.GetValue()</div> </div>
             </li>
         }
     }
@@ -26,7 +31,18 @@
 <script>
     document.querySelectorAll(".Resistance").forEach(comp => {
         comp.addEventListener("click", function () {
-            let value = prompt("Resistance value:")
+            const id = comp.id;
+            const newValue = prompt(`Nieuwe weerstand voor component ${id}:`);
+            if (newValue === null) return; // gebruiker klikte Cancel
+
+            fetch(`/Simulation/UpdateResistancePressureDrop?simulationId=0&componentId=${id}&newPressureDrop=${newValue}`, {
+                method: "POST",
+            }).then(response => response.text())
+              .then(html => {
+                  document.open();
+                  document.write(html);
+                  document.close();
+              });
         });
     });
 </script>
