@@ -7,9 +7,13 @@
             return incomingPressure;
         }
 
-        public override string GetInfo()
+        public override string GetName()
         {
             return $"Pipe";
+        }
+        public override string GetValue()
+        {
+            return null;
         }
 
         public string GetPipeColor(int maxPressure)

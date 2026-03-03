@@ -8,9 +8,13 @@
         {
             return PressureOutput;
         }
-        public override string GetInfo()
+        public override string GetName()
         {
             return $"Pump";
+        }
+        public override string GetValue()
+        {
+            return null;
         }
     }
 }
