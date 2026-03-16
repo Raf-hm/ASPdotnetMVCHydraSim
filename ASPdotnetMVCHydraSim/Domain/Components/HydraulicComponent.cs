@@ -2,6 +2,8 @@
 {
     public abstract class HydraulicComponent
     {
+        public int CX { get; set; }
+        public int CY { get; set; }
         public int CurrentPressure { get; set; }
         public int ComponentId { get; set; }
         public abstract int Process(int incomingPressure);

@@ -4,7 +4,7 @@
     {
         public override int Process(int incomingPressure)
         {
-            return incomingPressure;
+            return -1;
         }
         public override string GetName()
         {

@@ -6,27 +6,24 @@
     <button type="submit">Reset</button>
 </form>
 
-<ul class="simulation">
+<div class="simulation">
     @foreach (var component in Model)
     {
-        if (component is Pipe pipe)
-        {
-            var color = pipe.GetPipeColor((int)ViewBag.MaxPressure);
+        var style = $"grid-row:{component.CX};grid-column:{component.CY};";
 
-            <li class="component-item">
-                <div id="@component.ComponentId" class="component Pipe"
-                     style="background-color:@color">
-                </div>
-            </li>
-        }
-        else
-        {
-            <li class="component-item">
-                <div id="@component.ComponentId" class="component @component.GetType().Name"><div class="label">@component.GetValue()</div> </div>
-            </li>
-        }
+        <div class="component @component.GetType().Name" id="@component.ComponentId" style="@style">
+            @if (component is Pipe pipe)
+            {
+                var color = pipe.GetPipeColor((int)ViewBag.MaxPressure);
+                <div style="background-color:@color;width:100%;height:100%;"></div>
+            }
+            else
+            {
+                <div class="label">@component.GetValue()</div>
+            }
+        </div>
     }
-</ul>
+</div>
 
 <script>
     document.querySelectorAll(".Resistance").forEach(comp => {
