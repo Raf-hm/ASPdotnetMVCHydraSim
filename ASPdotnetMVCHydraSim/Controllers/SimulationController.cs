@@ -121,9 +121,9 @@ namespace ASPdotnetMVCHydraSim.Controllers
                 simulation.AddComponent(new Resistance      { CX = 1, CY = 5, PressureDrop = 300 });
                 simulation.AddComponent(new Pipe            { CX = 1, CY = 6 });
                 simulation.AddComponent(new PressureGauge   { CX = 1, CY = 7 });
-                simulation.AddComponent(new Pipe            { CX = 2, CY = 7 });
+                simulation.AddComponent(new Pipe            { CX = 2, CY = 7, rotated = true});
                 simulation.AddComponent(new Resistance      { CX = 3, CY = 7, PressureDrop = 200 });
-                simulation.AddComponent(new Pipe            { CX = 4, CY = 7 });
+                simulation.AddComponent(new Pipe            { CX = 4, CY = 7, rotated = true });
                 simulation.AddComponent(new PressureGauge   { CX = 5, CY = 7 });
                 simulation.AddComponent(new Pipe            { CX = 5, CY = 6 });
                 simulation.AddComponent(new Resistance      { CX = 5, CY = 5, PressureDrop = 100 });
@@ -131,9 +131,9 @@ namespace ASPdotnetMVCHydraSim.Controllers
                 simulation.AddComponent(new PressureGauge   { CX = 5, CY = 3 });
                 simulation.AddComponent(new Pipe            { CX = 5, CY = 2 });
                 simulation.AddComponent(new Tank            { CX = 5, CY = 1 });
-                simulation.AddComponent(new Pipe            { CX = 4, CY = 1 });
-                simulation.AddComponent(new Pipe            { CX = 3, CY = 1 });
-                simulation.AddComponent(new Pipe            { CX = 2, CY = 1 });
+                simulation.AddComponent(new Pipe            { CX = 4, CY = 1, rotated = true});
+                simulation.AddComponent(new Pipe            { CX = 3, CY = 1, rotated = true});
+                simulation.AddComponent(new Pipe            { CX = 2, CY = 1, rotated = true});
             }
             else if (id == 1)
             {

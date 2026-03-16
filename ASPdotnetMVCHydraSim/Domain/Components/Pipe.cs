@@ -2,6 +2,7 @@
 {
     public class Pipe : HydraulicComponent
     {
+        public bool rotated { get; set; }
         public override int Process(int incomingPressure)
         {
             return incomingPressure;
