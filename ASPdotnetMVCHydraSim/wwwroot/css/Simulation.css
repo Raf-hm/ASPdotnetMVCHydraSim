@@ -10,9 +10,10 @@
 
 .simulation {
     display: grid;
-    grid-template-columns: repeat(3, 100px);
-    grid-template-rows: repeat(3, 100px);
-    grid-auto-flow: dense;
+    grid-template-columns: repeat(0, 100px);
+    grid-template-rows: repeat(0, 100px);
+    /*    grid-auto-flow: dense;*/
+    grid-auto-flow: column;
     width: min-content;
 }
 
@@ -22,7 +23,7 @@
 }
 
 .Pump {
-    background-image: url('../Sprites/motor.png');
+    background-image: url('../Sprites/pump.png');
     background-size: cover;
     background-position: center;
 }
@@ -53,6 +54,18 @@
     background-image: url('../Sprites/tank.png');
     background-size: contain;
     background-repeat: no-repeat;
+    background-position: center;
+}
+
+.Motor {
+    background-image: url('../Sprites/motor.png');
+    background-size: cover;
+    background-position: center;
+}
+
+.ReliefValve {
+    background-image: url('../Sprites/ReliefValve.png');
+    background-size: cover;
     background-position: center;
 }
 
