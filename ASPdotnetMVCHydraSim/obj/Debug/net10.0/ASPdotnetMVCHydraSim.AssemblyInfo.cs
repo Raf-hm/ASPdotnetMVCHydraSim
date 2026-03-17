@@ -14,7 +14,7 @@ using System.Reflection;
 [assembly: System.Reflection.AssemblyCompanyAttribute("ASPdotnetMVCHydraSim")]
 [assembly: System.Reflection.AssemblyConfigurationAttribute("Debug")]
 [assembly: System.Reflection.AssemblyFileVersionAttribute("1.0.0.0")]
-[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+9e912aa0326e5f4771b5e82c997bbea7e2beeaaf")]
+[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+8b160950eda00479faba55761faf32657606173a")]
 [assembly: System.Reflection.AssemblyProductAttribute("ASPdotnetMVCHydraSim")]
 [assembly: System.Reflection.AssemblyTitleAttribute("ASPdotnetMVCHydraSim")]
 [assembly: System.Reflection.AssemblyVersionAttribute("1.0.0.0")]

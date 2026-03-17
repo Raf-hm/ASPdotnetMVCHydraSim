@@ -117,10 +117,20 @@ namespace ASPdotnetMVCHydraSim.Controllers
             }
             else if (id == 1)
             {
-                simulation.AddComponent(new Pump());
-                simulation.AddComponent(new Pipe());
-                simulation.AddComponent(new Pipe());
-                simulation.AddComponent(new Tank());
+                simulation.AddComponent(new Pump            { CX = 1, CY = 1 });
+                simulation.AddComponent(new Pipe            { CX = 1, CY = 2 });
+                simulation.AddComponent(new PressureGauge   { CX = 1, CY = 3 });
+                simulation.AddComponent(new Pipe            { CX = 1, CY = 4 });
+                simulation.AddComponent(new Pipe            { CX = 2, CY = 3, rotated = true });
+                simulation.AddComponent(new ReliefValve     { CX = 3, CY = 3 });
+                simulation.AddComponent(new Pipe            { CX = 3, CY = 4 });
+                simulation.AddComponent(new PressureGauge   { CX = 3, CY = 5 });
+                simulation.AddComponent(new Pipe            { CX = 3, CY = 6 });
+                simulation.AddComponent(new Motor           { CX = 1, CY = 5 });
+                simulation.AddComponent(new Pipe            { CX = 1, CY = 6 });
+                simulation.AddComponent(new PressureGauge   { CX = 1, CY = 7 });
+                simulation.AddComponent(new Pipe            { CX = 2, CY = 7, rotated = true });
+                simulation.AddComponent(new Tank            { CX = 3, CY = 7 });
             }
 
             return simulation;
