@@ -9,6 +9,35 @@ namespace ASPdotnetMVCHydraSim.Domain.Simulation
     {
         public List<HydraulicComponent> _components;
 
+        public void BuildConnections()
+        {
+            foreach (var comp in _components)
+            {
+                if (comp is Pump pump)
+                {
+                    var rightNeighbor = _components.FirstOrDefault(c =>
+                        c.CX == comp.CX && c.CY == comp.CY + 1);
+
+                    if (rightNeighbor != null)
+                        comp.Outputs.Add(rightNeighbor);
+
+                    continue;
+                }
+
+                comp.Outputs.Clear();
+
+                var neighbors = _components.Where(c =>
+                    (c.CX == comp.CX && Math.Abs(c.CY - comp.CY) == 1) ||
+                    (c.CY == comp.CY && Math.Abs(c.CX - comp.CX) == 1)
+                );
+
+                foreach (var n in neighbors)
+                {
+                    comp.Outputs.Add(n);
+                }
+            }
+        }
+
         public IReadOnlyList<HydraulicComponent> Components => _components;
 
         public int MaxPressure => _components.OfType<Pump>().FirstOrDefault()?.PressureOutput ?? 0;
@@ -47,12 +76,32 @@ namespace ASPdotnetMVCHydraSim.Domain.Simulation
         {
             SyncPumpWithResistance();
 
-            int currentPressure = 0;
+            BuildConnections();
 
-            foreach (var component in _components)
+            var pump = _components.OfType<Pump>().First();
+
+            var queue = new Queue<(HydraulicComponent comp, int pressure)>();
+            var visited = new Dictionary<int, int>();
+
+            queue.Enqueue((pump, pump.PressureOutput));
+
+            while (queue.Count > 0)
             {
-                currentPressure = component.Process(currentPressure);
-                component.CurrentPressure = currentPressure;
+                var (comp, pressure) = queue.Dequeue();
+
+                int newPressure = comp.Process(pressure);
+
+                if (visited.ContainsKey(comp.ComponentId) &&
+                    visited[comp.ComponentId] >= newPressure)
+                    continue;
+
+                visited[comp.ComponentId] = newPressure;
+                comp.CurrentPressure = newPressure;
+
+                foreach (var next in comp.Outputs)
+                {
+                    queue.Enqueue((next, newPressure));
+                }
             }
         }
     }

@@ -1,8 +1,9 @@
 ﻿@using ASPdotnetMVCHydraSim.Domain.Components
 <link href="~/css/Simulation.css" rel="stylesheet" />
 
+<!-- ✅ Reset knop met JUISTE simulationId -->
 <form method="post" action="/Simulation/Reset">
-    <input type="hidden" name="id" value="0" />
+    <input type="hidden" name="id" value="@ViewBag.SimulationId" />
     <button type="submit">Reset</button>
 </form>
 
@@ -14,14 +15,14 @@
         <div class="component @component.GetType().Name" id="@component.ComponentId" style="@style">
             @if (component is Pipe pipe)
             {
-                if (component.rotated == false)
+                var color = pipe.GetPipeColor((int)ViewBag.MaxPressure);
+
+                if (!component.rotated)
                 {
-                    var color = pipe.GetPipeColor((int)ViewBag.MaxPressure);
                     <div style="background-color:@color;width:100%;height:100%;"></div>
                 }
-                else if (component.rotated == true)
+                else
                 {
-                    var color = pipe.GetPipeColor((int)ViewBag.MaxPressure);
                     <div style="background-color:@color;width:100%;height:100%;transform: rotate(90deg);"></div>
                 }
             }
@@ -34,20 +35,31 @@
 </div>
 
 <script>
-    document.querySelectorAll(".Resistance").forEach(comp => {
-        comp.addEventListener("click", function () {
-            const id = comp.id;
-            const newValue = prompt(`Nieuwe weerstand voor component ${id}:`);
-            if (newValue === null) return; // gebruiker klikte Cancel
+    function attachResistanceHandlers() {
+        document.querySelectorAll(".Resistance").forEach(comp => {
+            comp.addEventListener("click", function () {
+                const id = comp.id;
+                const newValue = prompt(`Nieuwe weerstand voor component ${id}:`);
+                if (newValue === null) return;
 
-            fetch(`/Simulation/UpdateResistancePressureDrop?simulationId=0&componentId=${id}&newPressureDrop=${newValue}`, {
-                method: "POST",
-            }).then(response => response.text())
-              .then(html => {
-                  document.open();
-                  document.write(html);
-                  document.close();
-              });
+                fetch(`/Simulation/UpdateResistancePressureDrop?simulationId=@ViewBag.SimulationId&componentId=${id}&newPressureDrop=${newValue}`, {
+                    method: "POST",
+                })
+                .then(response => response.text())
+                .then(html => {
+                    const parser = new DOMParser();
+                    const doc = parser.parseFromString(html, "text/html");
+
+                    const newSimulation = doc.querySelector(".simulation");
+                    document.querySelector(".simulation").innerHTML = newSimulation.innerHTML;
+
+                    // 👉 opnieuw events koppelen
+                    attachResistanceHandlers();
+                });
+            });
         });
-    });
+    }
+
+    // eerste keer
+    attachResistanceHandlers();
 </script>

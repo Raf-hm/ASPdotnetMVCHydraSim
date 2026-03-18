@@ -2,6 +2,7 @@
 {
     public abstract class HydraulicComponent
     {
+        public List<HydraulicComponent> Outputs { get; set; } = new();
         public int CX { get; set; }
         public int CY { get; set; }
         public int CurrentPressure { get; set; }
