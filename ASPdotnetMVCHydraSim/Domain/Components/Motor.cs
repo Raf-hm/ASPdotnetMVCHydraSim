@@ -2,18 +2,23 @@
 {
     public class Motor : HydraulicComponent
     {
+        public int RequiredPressure { get; set; } 
+
         public override int Process(int incomingPressure)
         {
-            return incomingPressure;
+            CurrentPressure = incomingPressure;
+
+            return incomingPressure - RequiredPressure;
         }
 
         public override string GetName()
         {
-            return $"Motor";
+            return "Motor";
         }
+
         public override string GetValue()
         {
-            return null;
+            return $"{RequiredPressure} psi";
         }
     }
 }

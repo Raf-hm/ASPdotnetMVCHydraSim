@@ -1,7 +1,6 @@
 ﻿@using ASPdotnetMVCHydraSim.Domain.Components
 <link href="~/css/Simulation.css" rel="stylesheet" />
 
-<!-- ✅ Reset knop met JUISTE simulationId -->
 <form method="post" action="/Simulation/Reset">
     <input type="hidden" name="id" value="@ViewBag.SimulationId" />
     <button type="submit">Reset</button>
@@ -53,7 +52,6 @@
                     const newSimulation = doc.querySelector(".simulation");
                     document.querySelector(".simulation").innerHTML = newSimulation.innerHTML;
 
-                    // 👉 opnieuw events koppelen
                     attachResistanceHandlers();
                 });
             });
@@ -62,4 +60,6 @@
 
     // eerste keer
     attachResistanceHandlers();
+
+
 </script>

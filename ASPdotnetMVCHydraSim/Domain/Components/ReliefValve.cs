@@ -2,18 +2,35 @@
 {
     public class ReliefValve : HydraulicComponent
     {
+        public int MaxPressure { get; set; }
+
+        public bool IsOpen { get; set; }
+
         public override int Process(int incomingPressure)
         {
-            return incomingPressure;
+            if (incomingPressure > MaxPressure)
+            {
+                CurrentPressure = MaxPressure;
+                IsOpen = true;
+                return incomingPressure - MaxPressure;
+            }
+            else
+            {
+                CurrentPressure = incomingPressure;
+                IsOpen = false;
+                return 0;
+            }
+
         }
 
         public override string GetName()
         {
-            return $"Pipe";
+            return "ReliefValve";
         }
+
         public override string GetValue()
         {
-            return null;
+            return $"{MaxPressure} psi";
         }
     }
 }

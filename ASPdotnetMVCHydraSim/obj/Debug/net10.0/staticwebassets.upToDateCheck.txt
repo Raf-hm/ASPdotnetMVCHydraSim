@@ -1,5 +1,3 @@
-wwwroot\css\Library.css
-wwwroot\css\Simulation.css
 wwwroot\css\Site.css
 wwwroot\favicon.ico
 wwwroot\js\site.js
@@ -63,12 +61,16 @@ wwwroot\lib\jquery\dist\jquery.slim.js
 wwwroot\lib\jquery\dist\jquery.slim.min.js
 wwwroot\lib\jquery\dist\jquery.slim.min.map
 wwwroot\lib\jquery\LICENSE.txt
+wwwroot\css\Library.css
+wwwroot\css\Simulation.css
 wwwroot\Sprites\motor.png
 wwwroot\Sprites\pressuregauge.png
-wwwroot\Sprites\pump.png
-wwwroot\Sprites\ReliefValve.png
-wwwroot\Sprites\resistance.png
 wwwroot\Sprites\tank.png
+wwwroot\Sprites\resistance.png
+wwwroot\Sprites\ReliefValve.png
+wwwroot\Sprites\pump.png
+wwwroot\Sprites\sims\sim0.png
+wwwroot\Sprites\sims\sim1.png
 C:\Users\rafhe\Documents\GitHub\ASPdotnetMVCHydraSim\ASPdotnetMVCHydraSim\wwwroot\lib\jquery\LICENSE.txt
 C:\Users\rafhe\Documents\GitHub\ASPdotnetMVCHydraSim\ASPdotnetMVCHydraSim\wwwroot\lib\jquery\dist\jquery.slim.min.map
 C:\Users\rafhe\Documents\GitHub\ASPdotnetMVCHydraSim\ASPdotnetMVCHydraSim\wwwroot\lib\jquery\dist\jquery.slim.min.js
@@ -130,6 +132,6 @@ C:\Users\rafhe\Documents\GitHub\ASPdotnetMVCHydraSim\ASPdotnetMVCHydraSim\wwwroo
 C:\Users\rafhe\Documents\GitHub\ASPdotnetMVCHydraSim\ASPdotnetMVCHydraSim\wwwroot\lib\bootstrap\dist\css\bootstrap-grid.css
 C:\Users\rafhe\Documents\GitHub\ASPdotnetMVCHydraSim\ASPdotnetMVCHydraSim\wwwroot\js\site.js
 C:\Users\rafhe\Documents\GitHub\ASPdotnetMVCHydraSim\ASPdotnetMVCHydraSim\wwwroot\favicon.ico
-C:\Users\rafhe\Documents\GitHub\ASPdotnetMVCHydraSim\ASPdotnetMVCHydraSim\wwwroot\css\Simulation.css
-C:\Users\rafhe\Documents\GitHub\ASPdotnetMVCHydraSim\ASPdotnetMVCHydraSim\wwwroot\css\Site.css
 C:\Users\rafhe\Documents\GitHub\ASPdotnetMVCHydraSim\ASPdotnetMVCHydraSim\wwwroot\css\Library.css
+C:\Users\rafhe\Documents\GitHub\ASPdotnetMVCHydraSim\ASPdotnetMVCHydraSim\wwwroot\css\Site.css
+C:\Users\rafhe\Documents\GitHub\ASPdotnetMVCHydraSim\ASPdotnetMVCHydraSim\wwwroot\css\Simulation.css

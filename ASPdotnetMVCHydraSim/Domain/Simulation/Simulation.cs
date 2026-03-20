@@ -60,15 +60,30 @@ namespace ASPdotnetMVCHydraSim.Domain.Simulation
                 .Sum(r => r.PressureDrop);
         }
 
+
+
         public void SyncPumpWithResistance()
         {
             int totalResistance = GetTotalResistance();
+
+            int motorDemand = _components
+                .OfType<Motor>()
+                .Sum(m => m.RequiredPressure);
+
+            int demandedPressure = totalResistance + motorDemand;
+
+            var motor = _components.OfType<Motor>().FirstOrDefault();
+
+            if (motor != null)
+            {
+                demandedPressure = Math.Min(demandedPressure, motor.RequiredPressure);
+            }
 
             var pump = _components.OfType<Pump>().FirstOrDefault();
 
             if (pump != null)
             {
-                pump.PressureOutput = totalResistance;
+                pump.PressureOutput = demandedPressure;
             }
         }
 
