@@ -34,6 +34,25 @@
     margin: 35px 0;
 }
 
+.PipeCorner {
+    height: 65px;
+    width: 65px;
+    margin: 0px 35px 35px 0px;
+}
+.PipeCorner div {
+    transform-origin: 50px 50px;
+}
+.PipeCorner ::before {
+    content: "";
+    display: inline-block;
+    width: 35px;
+    height: 35px;
+    margin: 0 65px 65px 0;
+    background-color: #f4f4f4;
+
+}
+
+
 
 .PressureGauge {
     background-image: url('../Sprites/pressuregauge.png');

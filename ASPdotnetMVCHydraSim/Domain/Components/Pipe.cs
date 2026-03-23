@@ -2,7 +2,10 @@
 {
     public class Pipe : HydraulicComponent
     {
-        public bool rotated { get; set; }
+        //public bool rotated { get; set; }
+        public bool isCorner { get; set; }
+        public int Rotation { get; set; } = 0;
+
         public override int Process(int incomingPressure)
         {
             return incomingPressure;
@@ -10,7 +13,13 @@
 
         public override string GetName()
         {
-            return $"Pipe";
+            if (!isCorner)
+            {
+                return $"Pipe";
+            } else
+            {
+                return $"PipeCorner";
+            }
         }
         public override string GetValue()
         {
