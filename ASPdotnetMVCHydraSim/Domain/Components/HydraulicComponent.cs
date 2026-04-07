@@ -1,7 +1,10 @@
-﻿namespace ASPdotnetMVCHydraSim.Domain.Components
+﻿using Newtonsoft.Json;
+
+namespace ASPdotnetMVCHydraSim.Domain.Components
 {
     public abstract class HydraulicComponent
     {
+        [JsonIgnore]
         public List<HydraulicComponent> Outputs { get; set; } = new();
         public int CX { get; set; }
         public int CY { get; set; }

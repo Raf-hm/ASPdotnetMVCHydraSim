@@ -26,36 +26,30 @@ namespace ASPdotnetMVCHydraSim.Domain.Simulation
             var pump = _components.OfType<Pump>().FirstOrDefault();
             var motor = _components.OfType<Motor>().FirstOrDefault();
             var reliefValve = _components.OfType<ReliefValve>().FirstOrDefault();
-            var resistances = _components.OfType<Resistance>();
 
             if (pump == null) return;
 
-            // Simulatie zonder motor: druk = som van alle weerstanden
             if (motor == null)
             {
-                pump.PressureOutput = resistances.Sum(r => r.PressureDrop);
+                pump.PressureOutput = _components.OfType<Resistance>().Sum(r => r.PressureDrop);
                 return;
             }
 
-            // Simulatie met motor en reliefvalve
             if (reliefValve != null)
             {
                 if (motor.RequiredPressure >= reliefValve.MaxPressure)
                 {
-                    // RV gaat open: geen druk opbouwen
                     reliefValve.IsOpen = true;
                     pump.PressureOutput = 0;
                 }
                 else
                 {
-                    // RV blijft dicht: druk = wat motor vraagt
                     reliefValve.IsOpen = false;
                     pump.PressureOutput = motor.RequiredPressure;
                 }
                 return;
             }
 
-            // Motor zonder reliefvalve
             pump.PressureOutput = motor.RequiredPressure;
         }
 
@@ -64,7 +58,6 @@ namespace ASPdotnetMVCHydraSim.Domain.Simulation
             SyncPump();
 
             var pump = _components.OfType<Pump>().First();
-
             var queue = new Queue<(HydraulicComponent comp, int pressure)>();
             var visited = new HashSet<int>();
 
@@ -81,9 +74,7 @@ namespace ASPdotnetMVCHydraSim.Domain.Simulation
                 comp.CurrentPressure = pressure;
 
                 foreach (var next in comp.Outputs)
-                {
                     queue.Enqueue((next, outPressure));
-                }
             }
         }
     }

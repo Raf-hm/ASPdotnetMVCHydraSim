@@ -5,7 +5,7 @@
         public override int Process(int incomingPressure)
         {
             CurrentPressure = incomingPressure;
-            return -1; // retourleiding heeft altijd zuigdruk
+            return -1;
         }
 
         public override string GetName() => "Tank";

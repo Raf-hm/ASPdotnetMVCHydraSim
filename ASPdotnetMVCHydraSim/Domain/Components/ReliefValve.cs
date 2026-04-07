@@ -8,7 +8,6 @@
         public override int Process(int incomingPressure)
         {
             CurrentPressure = incomingPressure;
-            // IsOpen is al gezet door SyncPump, gewoon druk doorgeven (pad is al correct gekozen)
             return IsOpen ? 0 : incomingPressure;
         }
 

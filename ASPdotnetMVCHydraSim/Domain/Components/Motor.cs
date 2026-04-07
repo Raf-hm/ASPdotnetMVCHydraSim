@@ -7,7 +7,6 @@
         public override int Process(int incomingPressure)
         {
             CurrentPressure = incomingPressure;
-            // Negatieve druk alleen blokkeren als er geen druk op staat (RV open situatie)
             int result = incomingPressure - RequiredPressure;
             return incomingPressure <= 0 ? 0 : result;
         }
