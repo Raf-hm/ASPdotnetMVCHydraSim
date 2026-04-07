@@ -1,42 +1,10 @@
 ﻿using ASPdotnetMVCHydraSim.Domain.Components;
-using Microsoft.AspNetCore.Mvc;
-using System.Collections.Generic;
-using System.Linq;
 
 namespace ASPdotnetMVCHydraSim.Domain.Simulation
 {
     public class HydraulicSimulation
     {
         public List<HydraulicComponent> _components;
-
-        public void BuildConnections()
-        {
-            foreach (var comp in _components)
-            {
-                if (comp is Pump pump)
-                {
-                    var rightNeighbor = _components.FirstOrDefault(c =>
-                        c.CX == comp.CX && c.CY == comp.CY + 1);
-
-                    if (rightNeighbor != null)
-                        comp.Outputs.Add(rightNeighbor);
-
-                    continue;
-                }
-
-                comp.Outputs.Clear();
-
-                var neighbors = _components.Where(c =>
-                    (c.CX == comp.CX && Math.Abs(c.CY - comp.CY) == 1) ||
-                    (c.CY == comp.CY && Math.Abs(c.CX - comp.CX) == 1)
-                );
-
-                foreach (var n in neighbors)
-                {
-                    comp.Outputs.Add(n);
-                }
-            }
-        }
 
         public IReadOnlyList<HydraulicComponent> Components => _components;
 
@@ -53,50 +21,52 @@ namespace ASPdotnetMVCHydraSim.Domain.Simulation
             _components.Add(component);
         }
 
-        public int GetTotalResistance()
+        public void SyncPump()
         {
-            return _components
-                .OfType<Resistance>()
-                .Sum(r => r.PressureDrop);
-        }
-
-
-
-        public void SyncPumpWithResistance()
-        {
-            int totalResistance = GetTotalResistance();
-
-            int motorDemand = _components
-                .OfType<Motor>()
-                .Sum(m => m.RequiredPressure);
-
-            int demandedPressure = totalResistance + motorDemand;
-
-            var motor = _components.OfType<Motor>().FirstOrDefault();
-
-            if (motor != null)
-            {
-                demandedPressure = Math.Min(demandedPressure, motor.RequiredPressure);
-            }
-
             var pump = _components.OfType<Pump>().FirstOrDefault();
+            var motor = _components.OfType<Motor>().FirstOrDefault();
+            var reliefValve = _components.OfType<ReliefValve>().FirstOrDefault();
+            var resistances = _components.OfType<Resistance>();
 
-            if (pump != null)
+            if (pump == null) return;
+
+            // Simulatie zonder motor: druk = som van alle weerstanden
+            if (motor == null)
             {
-                pump.PressureOutput = demandedPressure;
+                pump.PressureOutput = resistances.Sum(r => r.PressureDrop);
+                return;
             }
+
+            // Simulatie met motor en reliefvalve
+            if (reliefValve != null)
+            {
+                if (motor.RequiredPressure >= reliefValve.MaxPressure)
+                {
+                    // RV gaat open: geen druk opbouwen
+                    reliefValve.IsOpen = true;
+                    pump.PressureOutput = 0;
+                }
+                else
+                {
+                    // RV blijft dicht: druk = wat motor vraagt
+                    reliefValve.IsOpen = false;
+                    pump.PressureOutput = motor.RequiredPressure;
+                }
+                return;
+            }
+
+            // Motor zonder reliefvalve
+            pump.PressureOutput = motor.RequiredPressure;
         }
 
         public void Run()
         {
-            SyncPumpWithResistance();
-
-            BuildConnections();
+            SyncPump();
 
             var pump = _components.OfType<Pump>().First();
 
             var queue = new Queue<(HydraulicComponent comp, int pressure)>();
-            var visited = new Dictionary<int, int>();
+            var visited = new HashSet<int>();
 
             queue.Enqueue((pump, pump.PressureOutput));
 
@@ -104,18 +74,15 @@ namespace ASPdotnetMVCHydraSim.Domain.Simulation
             {
                 var (comp, pressure) = queue.Dequeue();
 
-                int newPressure = comp.Process(pressure);
+                if (visited.Contains(comp.ComponentId)) continue;
+                visited.Add(comp.ComponentId);
 
-                if (visited.ContainsKey(comp.ComponentId) &&
-                    visited[comp.ComponentId] >= newPressure)
-                    continue;
-
-                visited[comp.ComponentId] = newPressure;
-                comp.CurrentPressure = newPressure;
+                int outPressure = comp.Process(pressure);
+                comp.CurrentPressure = pressure;
 
                 foreach (var next in comp.Outputs)
                 {
-                    queue.Enqueue((next, newPressure));
+                    queue.Enqueue((next, outPressure));
                 }
             }
         }

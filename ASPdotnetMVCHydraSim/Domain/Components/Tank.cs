@@ -4,15 +4,11 @@
     {
         public override int Process(int incomingPressure)
         {
-            return -1;
+            CurrentPressure = incomingPressure;
+            return -1; // retourleiding heeft altijd zuigdruk
         }
-        public override string GetName()
-        {
-            return $"Tank";
-        }
-        public override string GetValue()
-        {
-            return null;
-        }
+
+        public override string GetName() => "Tank";
+        public override string GetValue() => null;
     }
 }
