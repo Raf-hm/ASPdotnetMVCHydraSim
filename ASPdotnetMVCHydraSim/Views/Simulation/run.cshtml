@@ -34,25 +34,57 @@
                 const newValue = prompt(`Nieuwe weerstand voor component ${id}:`);
                 if (newValue === null) return;
 
-                fetch(`/Simulation/UpdateResistancePressureDrop?simulationId=@ViewBag.SimulationId&componentId=${id}&newPressureDrop=${newValue}`, {
-                    method: "POST",
-                })
-                .then(response => response.text())
-                .then(html => {
-                    const parser = new DOMParser();
-                    const doc = parser.parseFromString(html, "text/html");
-
-                    const newSimulation = doc.querySelector(".simulation");
-                    document.querySelector(".simulation").innerHTML = newSimulation.innerHTML;
-
-                    attachResistanceHandlers();
-                });
+                fetchAndReplace(
+                    `/Simulation/UpdateResistancePressureDrop?simulationId=@ViewBag.SimulationId&componentId=${id}&newPressureDrop=${newValue}`
+                );
             });
         });
     }
 
-    // eerste keer
+    function attachMotorHandlers() {
+        document.querySelectorAll(".Motor").forEach(comp => {
+            comp.addEventListener("click", function () {
+                const id = comp.id;
+                const newValue = prompt(`Nieuwe vereiste druk voor motor ${id} (psi):`);
+                if (newValue === null) return;
+
+                fetchAndReplace(
+                    `/Simulation/UpdateMotorRequiredPressure?simulationId=@ViewBag.SimulationId&componentId=${id}&newRequiredPressure=${newValue}`
+                );
+            });
+        });
+    }
+
+    function attachReliefValveHandlers() {
+        document.querySelectorAll(".ReliefValve").forEach(comp => {
+            comp.addEventListener("click", function () {
+                const id = comp.id;
+                const newValue = prompt(`Nieuwe maximale druk voor relief valve ${id} (psi):`);
+                if (newValue === null) return;
+
+                fetchAndReplace(
+                    `/Simulation/UpdateReliefValveMaxPressure?simulationId=@ViewBag.SimulationId&componentId=${id}&newMaxPressure=${newValue}`
+                );
+            });
+        });
+    }
+
+    function fetchAndReplace(url) {
+        fetch(url, { method: "POST" })
+            .then(response => response.text())
+            .then(html => {
+                const parser = new DOMParser();
+                const doc = parser.parseFromString(html, "text/html");
+                document.querySelector(".simulation").innerHTML =
+                    doc.querySelector(".simulation").innerHTML;
+
+                attachResistanceHandlers();
+                attachMotorHandlers();
+                attachReliefValveHandlers();
+            });
+    }
+
     attachResistanceHandlers();
-
-
+    attachMotorHandlers();
+    attachReliefValveHandlers();
 </script>

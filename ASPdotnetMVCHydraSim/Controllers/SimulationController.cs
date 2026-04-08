@@ -50,6 +50,41 @@ namespace ASPdotnetMVCHydraSim.Controllers
 
             return View("Run", simulation.Components);
         }
+        [HttpPost]
+        public IActionResult UpdateMotorRequiredPressure(int simulationId, int componentId, int newRequiredPressure)
+        {
+            var simulation = LoadFromSession(simulationId) ?? BuildSimulation(simulationId);
+            var component = simulation.Components.FirstOrDefault(c => c.ComponentId == componentId);
+
+            if (component is Motor motor)
+                motor.RequiredPressure = newRequiredPressure;
+
+            SaveToSession(simulation, simulationId);
+            simulation.Run();
+
+            ViewBag.MaxPressure = simulation.MaxPressure;
+            ViewBag.SimulationId = simulationId;
+
+            return View("Run", simulation.Components);
+        }
+
+        [HttpPost]
+        public IActionResult UpdateReliefValveMaxPressure(int simulationId, int componentId, int newMaxPressure)
+        {
+            var simulation = LoadFromSession(simulationId) ?? BuildSimulation(simulationId);
+            var component = simulation.Components.FirstOrDefault(c => c.ComponentId == componentId);
+
+            if (component is ReliefValve rv)
+                rv.MaxPressure = newMaxPressure;
+
+            SaveToSession(simulation, simulationId);
+            simulation.Run();
+
+            ViewBag.MaxPressure = simulation.MaxPressure;
+            ViewBag.SimulationId = simulationId;
+
+            return View("Run", simulation.Components);
+        }
 
         [HttpPost]
         public IActionResult Reset(int id)
