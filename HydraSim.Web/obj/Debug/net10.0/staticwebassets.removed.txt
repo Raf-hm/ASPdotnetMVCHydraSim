@@ -1,0 +1,5 @@
+C:\Users\rafhe\Downloads\stap2_3lagen\stap2\HydraSim\HydraSim.Web\wwwroot\css\Library.css
+C:\Users\rafhe\Downloads\stap2_3lagen\stap2\HydraSim\HydraSim.Web\wwwroot\css\site.css
+C:\Users\rafhe\Downloads\stap2_3lagen\stap2\HydraSim\HydraSim.Web\wwwroot\js\site.js
+C:\Users\rafhe\Downloads\stap2_3lagen\stap2\HydraSim\HydraSim.Web\wwwroot\css\Simulation.css
+C:\Users\rafhe\Downloads\stap2_3lagen\stap2\HydraSim\HydraSim.Web\wwwroot\favicon.ico

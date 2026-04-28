@@ -1,0 +1,93 @@
+﻿.component-item {
+    list-style: none;
+    flex: 0 0 100px;
+    width: 100px;
+    max-width: 100px;
+    text-align: center;
+    box-sizing: border-box;
+    overflow: hidden;
+}
+
+.simulation {
+    display: grid;
+    grid-template-columns: repeat(0, 100px);
+    grid-template-rows: repeat(0, 100px);
+    /*    grid-auto-flow: dense;*/
+    grid-auto-flow: column;
+    width: min-content;
+}
+
+.component {
+    width: 100px;
+    height: 100px;
+}
+
+.Pump {
+    background-image: url('../Sprites/pump.png');
+    background-size: cover;
+    background-position: center;
+}
+
+
+.Pipe {
+    height: 30px;
+    margin: 35px 0;
+}
+
+.PipeCorner {
+    height: 65px;
+    width: 65px;
+    margin: 0px 35px 35px 0px;
+}
+.PipeCorner div {
+    transform-origin: 50px 50px;
+}
+.PipeCorner ::before {
+    content: "";
+    display: inline-block;
+    width: 35px;
+    height: 35px;
+    margin: 0 65px 65px 0;
+    background-color: #f4f4f4;
+
+}
+
+
+
+.PressureGauge {
+    background-image: url('../Sprites/pressuregauge.png');
+    background-size: contain;
+    background-repeat: no-repeat;
+    background-position: center;
+}
+
+
+.Resistance {
+    background-image: url('../Sprites/resistance.png');
+    background-size: contain;
+    background-repeat: no-repeat;
+    background-position: center;
+}
+
+.Tank {
+    background-image: url('../Sprites/tank.png');
+    background-size: contain;
+    background-repeat: no-repeat;
+    background-position: center;
+}
+
+.Motor {
+    background-image: url('../Sprites/motor.png');
+    background-size: cover;
+    background-position: center;
+}
+
+.ReliefValve {
+    background-image: url('../Sprites/ReliefValve.png');
+    background-size: cover;
+    background-position: center;
+}
+
+.label {
+    font-size: 13px;
+}

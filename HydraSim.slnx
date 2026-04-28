@@ -1,0 +1,5 @@
+<Solution>
+  <Project Path="HydraSim.Domain/HydraSim.Domain.csproj" />
+  <Project Path="HydraSim.DAL/HydraSim.DAL.csproj" />
+  <Project Path="HydraSim.Web/HydraSim.Web.csproj" />
+</Solution>
