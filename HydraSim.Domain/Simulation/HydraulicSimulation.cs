@@ -4,7 +4,7 @@ namespace HydraSim.Domain.Simulation
 {
     public class HydraulicSimulation
     {
-        public List<HydraulicComponent> _components;
+        private List<HydraulicComponent> _components;
 
         public IReadOnlyList<HydraulicComponent> Components => _components;
 
@@ -71,7 +71,6 @@ namespace HydraSim.Domain.Simulation
                 visited.Add(comp.ComponentId);
 
                 int outPressure = comp.Process(pressure);
-                comp.CurrentPressure = pressure;
 
                 foreach (var next in comp.Outputs)
                     queue.Enqueue((next, outPressure));

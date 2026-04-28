@@ -99,11 +99,11 @@
   "project": {
     "version": "1.0.0",
     "restore": {
-      "projectUniqueName": "C:\\Users\\rafhe\\Documents\\GitHub\\ASPdotnetMVCHydraSim\\HydraSim.Web\\HydraSim.Web.csproj",
+      "projectUniqueName": "C:\\Users\\rafhe\\Downloads\\stap3_oop_basis\\stap3\\HydraSim\\HydraSim.Web\\HydraSim.Web.csproj",
       "projectName": "HydraSim.Web",
-      "projectPath": "C:\\Users\\rafhe\\Documents\\GitHub\\ASPdotnetMVCHydraSim\\HydraSim.Web\\HydraSim.Web.csproj",
+      "projectPath": "C:\\Users\\rafhe\\Downloads\\stap3_oop_basis\\stap3\\HydraSim\\HydraSim.Web\\HydraSim.Web.csproj",
       "packagesPath": "C:\\Users\\rafhe\\.nuget\\packages\\",
-      "outputPath": "C:\\Users\\rafhe\\Documents\\GitHub\\ASPdotnetMVCHydraSim\\HydraSim.Web\\obj\\",
+      "outputPath": "C:\\Users\\rafhe\\Downloads\\stap3_oop_basis\\stap3\\HydraSim\\HydraSim.Web\\obj\\",
       "projectStyle": "PackageReference",
       "fallbackFolders": [
         "C:\\Program Files (x86)\\Microsoft Visual Studio\\Shared\\NuGetPackages"
@@ -126,11 +126,11 @@
           "framework": "net10.0",
           "targetAlias": "net10.0",
           "projectReferences": {
-            "C:\\Users\\rafhe\\Documents\\GitHub\\ASPdotnetMVCHydraSim\\HydraSim.DAL\\HydraSim.DAL.csproj": {
-              "projectPath": "C:\\Users\\rafhe\\Documents\\GitHub\\ASPdotnetMVCHydraSim\\HydraSim.DAL\\HydraSim.DAL.csproj"
+            "C:\\Users\\rafhe\\Downloads\\stap3_oop_basis\\stap3\\HydraSim\\HydraSim.DAL\\HydraSim.DAL.csproj": {
+              "projectPath": "C:\\Users\\rafhe\\Downloads\\stap3_oop_basis\\stap3\\HydraSim\\HydraSim.DAL\\HydraSim.DAL.csproj"
             },
-            "C:\\Users\\rafhe\\Documents\\GitHub\\ASPdotnetMVCHydraSim\\HydraSim.Domain\\HydraSim.Domain.csproj": {
-              "projectPath": "C:\\Users\\rafhe\\Documents\\GitHub\\ASPdotnetMVCHydraSim\\HydraSim.Domain\\HydraSim.Domain.csproj"
+            "C:\\Users\\rafhe\\Downloads\\stap3_oop_basis\\stap3\\HydraSim\\HydraSim.Domain\\HydraSim.Domain.csproj": {
+              "projectPath": "C:\\Users\\rafhe\\Downloads\\stap3_oop_basis\\stap3\\HydraSim\\HydraSim.Domain\\HydraSim.Domain.csproj"
             }
           }
         }
