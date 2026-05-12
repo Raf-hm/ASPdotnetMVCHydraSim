@@ -14,7 +14,7 @@ using System.Reflection;
 [assembly: System.Reflection.AssemblyCompanyAttribute("HydraSim.DAL")]
 [assembly: System.Reflection.AssemblyConfigurationAttribute("Debug")]
 [assembly: System.Reflection.AssemblyFileVersionAttribute("1.0.0.0")]
-[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0")]
+[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+85db6bd34eaf2a568c09a3fb900e9b195632da75")]
 [assembly: System.Reflection.AssemblyProductAttribute("HydraSim.DAL")]
 [assembly: System.Reflection.AssemblyTitleAttribute("HydraSim.DAL")]
 [assembly: System.Reflection.AssemblyVersionAttribute("1.0.0.0")]

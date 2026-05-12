@@ -1,1 +1,41 @@
+# Binaries, Objects en User Specific Files
+bin/
+obj/
+out/
+*.user
+*.suo
+*.userosscache
+*.sln.docstates
+# IDE
+.idea/
+.vscode/
 .vs/
+*.log
+# Nuget
+packages/
+.nuget/
+.env
+.env.*
+*.nupkg
+*.snupkg
+# ASPNetCore
+appsettings.*.json
+!appsettings.json
+# OS
+.DS_Store
+Thumbs.db
+#Docker
+docker-compose.override.yml
+*.tar
+# Temp
+*.tmp
+*.temp
+*.swp
+# Build en Publish
+publish/
+dist/
+# Misc
+*.cache
+*.bak
+*.old
+

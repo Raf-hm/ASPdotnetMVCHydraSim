@@ -4,6 +4,8 @@ namespace HydraSim.Domain.Simulation
 {
     public class HydraulicSimulation
     {
+        private enum Dir { N, E, S, W }
+
         private List<HydraulicComponent> _components;
 
         public IReadOnlyList<HydraulicComponent> Components => _components;
@@ -53,6 +55,70 @@ namespace HydraSim.Domain.Simulation
             pump.PressureOutput = motor.RequiredPressure;
         }
 
+        public void AutoConnect()
+        {
+            foreach (var comp in _components)
+                comp.Outputs.Clear();
+
+            var grid = new Dictionary<(int x, int y), HydraulicComponent>();
+            foreach (var comp in _components)
+                grid[(comp.CX, comp.CY)] = comp;
+
+            var neighbors = new Dictionary<HydraulicComponent, List<HydraulicComponent>>();
+            foreach (var comp in _components)
+                neighbors[comp] = new List<HydraulicComponent>();
+
+            Dir[] sides = { Dir.N, Dir.E, Dir.S, Dir.W };
+
+            foreach (var comp in _components)
+            {
+                foreach (var side in sides)
+                {
+                    if (!HasPort(comp, side)) continue;
+
+                    int nx = comp.CX + DeltaX(side);
+                    int ny = comp.CY + DeltaY(side);
+
+                    if (!grid.TryGetValue((nx, ny), out var neighbor)) continue;
+                    if (!HasPort(neighbor, Opposite(side))) continue;
+                    if (!neighbors[comp].Contains(neighbor)) neighbors[comp].Add(neighbor);
+                }
+            }
+
+            var pump = _components.OfType<Pump>().FirstOrDefault();
+            if (pump == null) return;
+
+            var distance = new Dictionary<HydraulicComponent, int>();
+            distance[pump] = 0;
+
+            var queue = new Queue<HydraulicComponent>();
+            queue.Enqueue(pump);
+
+            while (queue.Count > 0)
+            {
+                var current = queue.Dequeue();
+                foreach (var n in neighbors[current])
+                {
+                    if (!distance.ContainsKey(n))
+                    {
+                        distance[n] = distance[current] + 1;
+                        queue.Enqueue(n);
+                    }
+                }
+            }
+
+            foreach (var comp in _components)
+            {
+                if (!distance.ContainsKey(comp)) continue;
+
+                foreach (var n in neighbors[comp])
+                {
+                    if (distance.ContainsKey(n) && distance[n] > distance[comp])
+                        comp.Outputs.Add(n);
+                }
+            }
+        }
+
         public void Run()
         {
             SyncPump();
@@ -75,6 +141,53 @@ namespace HydraSim.Domain.Simulation
                 foreach (var next in comp.Outputs)
                     queue.Enqueue((next, outPressure));
             }
+        }
+
+        private static Dir Opposite(Dir d)
+        {
+            if (d == Dir.N) return Dir.S;
+            if (d == Dir.S) return Dir.N;
+            if (d == Dir.E) return Dir.W;
+            return Dir.E; 
+        }
+
+        private static int DeltaX(Dir d)
+        {
+            if (d == Dir.E) return 1;
+            if (d == Dir.W) return -1;
+            return 0;
+        }
+
+        private static int DeltaY(Dir d)
+        {
+            if (d == Dir.S) return 1;
+            if (d == Dir.N) return -1;
+            return 0;
+        }
+
+        private static bool HasPort(HydraulicComponent c, Dir side)
+        {
+            if (c is Pump)
+                return side == Dir.S;
+
+            if (c is Pipe pipe)
+            {
+                if (pipe.IsCorner)
+                {
+                    if (pipe.Rotation == 0)   return side == Dir.W || side == Dir.N;
+                    if (pipe.Rotation == 90)  return side == Dir.S || side == Dir.W;
+                    if (pipe.Rotation == 180) return side == Dir.E || side == Dir.S;
+                    if (pipe.Rotation == 270) return side == Dir.N || side == Dir.E;
+                    return false;
+                }
+
+                if (pipe.Rotation == 90 || pipe.Rotation == 270)
+                    return side == Dir.E || side == Dir.W;
+
+                return side == Dir.N || side == Dir.S;
+            }
+
+            return true;
         }
     }
 }

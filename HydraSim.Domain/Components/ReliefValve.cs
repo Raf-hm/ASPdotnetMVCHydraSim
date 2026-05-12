@@ -22,7 +22,7 @@ namespace HydraSim.Domain.Components
         public override int Process(int incomingPressure)
         {
             CurrentPressure = incomingPressure;
-            return IsOpen ? 0 : incomingPressure;
+            return IsOpen ? incomingPressure : 0;
         }
 
         public override string GetName() => "ReliefValve";
