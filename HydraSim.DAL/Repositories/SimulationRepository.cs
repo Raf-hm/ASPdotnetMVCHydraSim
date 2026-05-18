@@ -1,95 +1,61 @@
-using HydraSim.Domain.Components;
+using HydraSim.DAL.Data;
 using HydraSim.Domain.Simulation;
-using Newtonsoft.Json;
+using Microsoft.EntityFrameworkCore;
 
 namespace HydraSim.DAL.Repositories
 {
     public class SimulationRepository : ISimulationRepository
     {
-        private string GetSessionKey(int id) => $"SimulationComponents_{id}";
+        private readonly HydraSimDbContext _db;
 
-        public void SaveToSession(HydraulicSimulation simulation, int id, Action<string, string> sessionSetter)
+        public SimulationRepository(HydraSimDbContext db)
         {
-            var settings = new JsonSerializerSettings { TypeNameHandling = TypeNameHandling.All };
-            var json = JsonConvert.SerializeObject(simulation.Components, settings);
-            sessionSetter(GetSessionKey(id), json);
+            _db = db ?? throw new ArgumentNullException(nameof(db));
         }
 
-        public HydraulicSimulation? LoadFromSession(int id, Func<string, string?> sessionGetter)
+        public async Task<HydraulicSimulation?> LoadAsync(int id)
         {
-            var json = sessionGetter(GetSessionKey(id));
-            if (string.IsNullOrEmpty(json)) return null;
+            var simulation = await _db.Simulations
+                .Include(s => s.Components)
+                .FirstOrDefaultAsync(s => s.Id == id);
 
-            var settings = new JsonSerializerSettings { TypeNameHandling = TypeNameHandling.All };
-            var components = JsonConvert.DeserializeObject<List<HydraulicComponent>>(json, settings);
-
-            var simulation = new HydraulicSimulation();
-            foreach (var component in components)
-                simulation.AddComponent(component);
+            if (simulation == null) return null;
 
             simulation.AutoConnect();
             return simulation;
         }
 
-        public HydraulicSimulation BuildSimulation(int id)
+        public Task SaveChangesAsync() => _db.SaveChangesAsync();
+        public Task<List<HydraulicSimulation>> ListAsync()
         {
-            var simulation = new HydraulicSimulation();
+            return _db.Simulations
+                .OrderBy(s => s.Id)
+                .ToListAsync();
+        }
 
-            if (id == 1)
+        public async Task<bool> ResetAsync(int id)
+        {
+            var existing = await _db.Simulations
+                .Include(s => s.Components)
+                .FirstOrDefaultAsync(s => s.Id == id);
+
+            if (existing == null) return false;
+
+            var template = SeedData.BuildTemplate(id);
+            if (template == null) return false;
+
+            var toRemove = existing.Components.ToList();
+            existing.Components.Clear();
+            _db.Components.RemoveRange(toRemove);
+
+            foreach (var c in template.Components)
             {
-                simulation.AddComponent(new Pump(1, 1, 0));
-                simulation.AddComponent(new Pipe(1, 2));
-                simulation.AddComponent(new PressureGauge(1, 3));
-                simulation.AddComponent(new Pipe(1, 4));
-                simulation.AddComponent(new Resistance(1, 5, 300));
-                simulation.AddComponent(new Pipe(1, 6));
-                simulation.AddComponent(new PressureGauge(1, 7));
-                simulation.AddComponent(new Pipe(2, 7, rotation: 90));
-                simulation.AddComponent(new Resistance(3, 7, 200));
-                simulation.AddComponent(new Pipe(4, 7, rotation: 90));
-                simulation.AddComponent(new PressureGauge(5, 7));
-                simulation.AddComponent(new Pipe(5, 6));
-                simulation.AddComponent(new Resistance(5, 5, 100));
-                simulation.AddComponent(new Pipe(5, 4));
-                simulation.AddComponent(new PressureGauge(5, 3));
-                simulation.AddComponent(new Pipe(5, 2));
-                simulation.AddComponent(new Tank(5, 1));
-                simulation.AddComponent(new Pipe(4, 1, rotation: 90));
-                simulation.AddComponent(new Pipe(3, 1, rotation: 90));
-                simulation.AddComponent(new Pipe(2, 1, rotation: 90));
-            }
-            else if (id == 2)
-            {
-                simulation.AddComponent(new Pump(1, 1, 0));
-                simulation.AddComponent(new Pipe(1, 2));
-                simulation.AddComponent(new PressureGauge(1, 3));
-                simulation.AddComponent(new Pipe(1, 4));
-                simulation.AddComponent(new Pipe(2, 3, rotation: 90));
-                simulation.AddComponent(new Motor(3, 3, 200));
-                simulation.AddComponent(new Pipe(3, 4));
-                simulation.AddComponent(new PressureGauge(3, 5));
-                simulation.AddComponent(new Pipe(3, 6));
-                simulation.AddComponent(new ReliefValve(1, 5, 300));
-                simulation.AddComponent(new Pipe(1, 6));
-                simulation.AddComponent(new PressureGauge(1, 7));
-                simulation.AddComponent(new Pipe(2, 7, rotation: 90));
-                simulation.AddComponent(new Tank(3, 7));
-                simulation.AddComponent(new Pipe(4, 7, rotation: 90));
-                simulation.AddComponent(new Pipe(5, 7, isCorner: true));
-                simulation.AddComponent(new Pipe(5, 6));
-                simulation.AddComponent(new Pipe(5, 5));
-                simulation.AddComponent(new Pipe(5, 4));
-                simulation.AddComponent(new Pipe(5, 3));
-                simulation.AddComponent(new Pipe(5, 2));
-                simulation.AddComponent(new Pipe(5, 1, isCorner: true, rotation: 90));
-                simulation.AddComponent(new Pipe(4, 1, rotation: 90));
-                simulation.AddComponent(new Pipe(3, 1, rotation: 90));
-                simulation.AddComponent(new Pipe(2, 1, rotation: 90));
+                c.SimulationId = existing.Id;
+                existing.Components.Add(c);
             }
 
-            simulation.AutoConnect();
-            return simulation;
+            await _db.SaveChangesAsync();
+            return true;
         }
     }
 }
-

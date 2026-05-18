@@ -1,21 +1,18 @@
+using System.ComponentModel.DataAnnotations.Schema;
+
 namespace HydraSim.Domain.Components
 {
     public class Pump : HydraulicComponent
     {
-        private int _pressureOutput;
+        [NotMapped]
+        public int PressureOutput { get; set; }
 
         public Pump(int cx, int cy, int pressureOutput) : base(cx, cy)
         {
-            _pressureOutput = pressureOutput;
+            PressureOutput = pressureOutput;
         }
 
         public Pump() { }
-
-        public int PressureOutput
-        {
-            get => _pressureOutput;
-            set => _pressureOutput = value;
-        }
 
         public override int Process(int incomingPressure)
         {

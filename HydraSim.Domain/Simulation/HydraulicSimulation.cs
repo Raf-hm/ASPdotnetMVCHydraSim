@@ -6,34 +6,37 @@ namespace HydraSim.Domain.Simulation
     {
         private enum Dir { N, E, S, W }
 
-        private List<HydraulicComponent> _components;
+        public int Id { get; set; }
+        public string Name { get; set; } = "";
+        public string Description { get; set; } = "";
+        public string ImagePath { get; set; } = "";
 
-        public IReadOnlyList<HydraulicComponent> Components => _components;
+        public List<HydraulicComponent> Components { get; set; } = new();
 
-        public int MaxPressure => _components.OfType<Pump>().FirstOrDefault()?.PressureOutput ?? 0;
+        public int MaxPressure => Components.OfType<Pump>().FirstOrDefault()?.PressureOutput ?? 0;
 
         public HydraulicSimulation()
         {
-            _components = new List<HydraulicComponent>();
+            Components = new List<HydraulicComponent>();
         }
 
         public void AddComponent(HydraulicComponent component)
         {
-            component.ComponentId = _components.Count;
-            _components.Add(component);
+            component.ComponentId = Components.Count;
+            Components.Add(component);
         }
 
         public void SyncPump()
         {
-            var pump = _components.OfType<Pump>().FirstOrDefault();
-            var motor = _components.OfType<Motor>().FirstOrDefault();
-            var reliefValve = _components.OfType<ReliefValve>().FirstOrDefault();
+            var pump = Components.OfType<Pump>().FirstOrDefault();
+            var motor = Components.OfType<Motor>().FirstOrDefault();
+            var reliefValve = Components.OfType<ReliefValve>().FirstOrDefault();
 
             if (pump == null) return;
 
             if (motor == null)
             {
-                pump.PressureOutput = _components.OfType<Resistance>().Sum(r => r.PressureDrop);
+                pump.PressureOutput = Components.OfType<Resistance>().Sum(r => r.PressureDrop);
                 return;
             }
 
@@ -57,20 +60,20 @@ namespace HydraSim.Domain.Simulation
 
         public void AutoConnect()
         {
-            foreach (var comp in _components)
+            foreach (var comp in Components)
                 comp.Outputs.Clear();
 
             var grid = new Dictionary<(int x, int y), HydraulicComponent>();
-            foreach (var comp in _components)
+            foreach (var comp in Components)
                 grid[(comp.CX, comp.CY)] = comp;
 
             var neighbors = new Dictionary<HydraulicComponent, List<HydraulicComponent>>();
-            foreach (var comp in _components)
+            foreach (var comp in Components)
                 neighbors[comp] = new List<HydraulicComponent>();
 
             Dir[] sides = { Dir.N, Dir.E, Dir.S, Dir.W };
 
-            foreach (var comp in _components)
+            foreach (var comp in Components)
             {
                 foreach (var side in sides)
                 {
@@ -85,7 +88,7 @@ namespace HydraSim.Domain.Simulation
                 }
             }
 
-            var pump = _components.OfType<Pump>().FirstOrDefault();
+            var pump = Components.OfType<Pump>().FirstOrDefault();
             if (pump == null) return;
 
             var distance = new Dictionary<HydraulicComponent, int>();
@@ -107,7 +110,7 @@ namespace HydraSim.Domain.Simulation
                 }
             }
 
-            foreach (var comp in _components)
+            foreach (var comp in Components)
             {
                 if (!distance.ContainsKey(comp)) continue;
 
@@ -123,7 +126,7 @@ namespace HydraSim.Domain.Simulation
         {
             SyncPump();
 
-            var pump = _components.OfType<Pump>().First();
+            var pump = Components.OfType<Pump>().First();
             var queue = new Queue<(HydraulicComponent comp, int pressure)>();
             var visited = new HashSet<int>();
 
@@ -148,7 +151,7 @@ namespace HydraSim.Domain.Simulation
             if (d == Dir.N) return Dir.S;
             if (d == Dir.S) return Dir.N;
             if (d == Dir.E) return Dir.W;
-            return Dir.E; 
+            return Dir.E;
         }
 
         private static int DeltaX(Dir d)

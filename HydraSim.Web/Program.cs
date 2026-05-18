@@ -1,15 +1,25 @@
+using HydraSim.DAL.Data;
 using HydraSim.DAL.Repositories;
+using Microsoft.EntityFrameworkCore;
 
 var builder = WebApplication.CreateBuilder(args);
 
 builder.Services.AddControllersWithViews();
-builder.Services.AddDistributedMemoryCache();
-builder.Services.AddSession();
 
-// Dependency injection: DAL
+var connectionString = builder.Configuration.GetConnectionString("HydraSimDb");
+builder.Services.AddDbContext<HydraSimDbContext>(options =>
+    options.UseMySql(connectionString, new MySqlServerVersion(new Version(8, 0, 35))));
+
 builder.Services.AddScoped<ISimulationRepository, SimulationRepository>();
 
 var app = builder.Build();
+
+using (var scope = app.Services.CreateScope())
+{
+    var db = scope.ServiceProvider.GetRequiredService<HydraSimDbContext>();
+    db.Database.EnsureCreated();
+    SeedData.Seed(db);
+}
 
 if (!app.Environment.IsDevelopment())
 {
@@ -18,7 +28,6 @@ if (!app.Environment.IsDevelopment())
 }
 
 app.UseHttpsRedirection();
-app.UseSession();
 app.UseRouting();
 app.UseAuthorization();
 app.MapStaticAssets();
