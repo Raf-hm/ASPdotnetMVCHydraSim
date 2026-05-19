@@ -1,9 +1,10 @@
 {
   "version": 2,
-  "dgSpecHash": "YGN9l0U012c=",
+  "dgSpecHash": "dIcsTlo75P8=",
   "success": true,
   "projectFilePath": "C:\\Users\\rafhe\\Documents\\GitHub\\ASPdotnetMVCHydraSim\\HydraSim.DAL\\HydraSim.DAL.csproj",
   "expectedPackageFiles": [
+    "C:\\Users\\rafhe\\.nuget\\packages\\bcrypt.net-next\\4.2.0\\bcrypt.net-next.4.2.0.nupkg.sha512",
     "C:\\Users\\rafhe\\.nuget\\packages\\microsoft.entityframeworkcore\\8.0.2\\microsoft.entityframeworkcore.8.0.2.nupkg.sha512",
     "C:\\Users\\rafhe\\.nuget\\packages\\microsoft.entityframeworkcore.abstractions\\8.0.2\\microsoft.entityframeworkcore.abstractions.8.0.2.nupkg.sha512",
     "C:\\Users\\rafhe\\.nuget\\packages\\microsoft.entityframeworkcore.analyzers\\8.0.2\\microsoft.entityframeworkcore.analyzers.8.0.2.nupkg.sha512",
