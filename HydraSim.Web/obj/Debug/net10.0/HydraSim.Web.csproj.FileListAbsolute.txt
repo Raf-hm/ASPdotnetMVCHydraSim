@@ -100,3 +100,4 @@ C:\Users\rafhe\Documents\GitHub\ASPdotnetMVCHydraSim\HydraSim.Web\bin\Debug\net1
 C:\Users\rafhe\Documents\GitHub\ASPdotnetMVCHydraSim\HydraSim.Web\bin\Debug\net10.0\Microsoft.EntityFrameworkCore.Relational.dll
 C:\Users\rafhe\Documents\GitHub\ASPdotnetMVCHydraSim\HydraSim.Web\bin\Debug\net10.0\MySqlConnector.dll
 C:\Users\rafhe\Documents\GitHub\ASPdotnetMVCHydraSim\HydraSim.Web\bin\Debug\net10.0\Pomelo.EntityFrameworkCore.MySql.dll
+C:\Users\rafhe\Documents\GitHub\ASPdotnetMVCHydraSim\HydraSim.Web\bin\Debug\net10.0\BCrypt-Net-Next.dll

@@ -1,10 +1,10 @@
-﻿<!DOCTYPE html>
+<!DOCTYPE html>
 <html lang="en">
 <head>
     <meta charset="UTF-8">
     <title>HydraSim</title>
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    
+
     <style>
             * {
                 margin: 0;
@@ -37,6 +37,7 @@
                 list-style: none;
                 display: flex;
                 gap: 25px;
+                align-items: center;
             }
 
                 #navbar li a {
@@ -50,6 +51,31 @@
                         opacity: 0.7;
                     }
 
+            #navbar .user-email {
+                color: #aaa;
+                font-size: 14px;
+            }
+
+            #navbar .logout-form {
+                display: inline;
+                margin: 0;
+                padding: 0;
+            }
+
+            #navbar .logout-form button {
+                background: none;
+                border: none;
+                color: white;
+                font-size: 16px;
+                cursor: pointer;
+                padding: 0;
+                font-family: inherit;
+            }
+
+            #navbar .logout-form button:hover {
+                opacity: 0.7;
+            }
+
             main {
                 padding: 40px;
             }
@@ -59,7 +85,6 @@
 
     <header>
         <div class="logo">
-
             <a class="navbar-brand" asp-area="" asp-controller="Home" asp-action="Index">HydraSim</a>
         </div>
 
@@ -71,6 +96,17 @@
                 <li>
                     <a asp-controller="Home" asp-action="Library">Library</a>
                 </li>
+
+                @if (User.Identity?.IsAuthenticated == true)
+                {
+                    <li class="user-email">@User.Identity.Name</li>
+                    <li>
+                        <form class="logout-form" asp-controller="Auth" asp-action="Logout" method="post">
+                            @Html.AntiForgeryToken()
+                            <button type="submit">Logout</button>
+                        </form>
+                    </li>
+                }
             </ul>
         </nav>
     </header>
@@ -78,6 +114,8 @@
     <main>
         @RenderBody()
     </main>
+
+    @await RenderSectionAsync("Scripts", required: false)
 
 </body>
 </html>
