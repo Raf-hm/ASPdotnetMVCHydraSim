@@ -1,3 +1,4 @@
+using HydraSim.Domain.Components;
 using HydraSim.Domain.Simulation;
 
 namespace HydraSim.DAL.Repositories
@@ -6,7 +7,7 @@ namespace HydraSim.DAL.Repositories
     {
         Task<HydraulicSimulation?> LoadAsync(int id);
         Task<List<HydraulicSimulation>> ListAsync();
-        Task SaveChangesAsync();
         Task<bool> ResetAsync(int id);
+        Task UpdateComponentAsync(HydraulicComponent component);
     }
 }

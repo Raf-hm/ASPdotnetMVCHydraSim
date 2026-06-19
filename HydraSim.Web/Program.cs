@@ -3,15 +3,14 @@ using HydraSim.DAL.Repositories;
 using HydraSim.Domain.Auth;
 using Microsoft.AspNetCore.Authentication.Cookies;
 using Microsoft.AspNetCore.Authorization;
-using Microsoft.EntityFrameworkCore;
 
 var builder = WebApplication.CreateBuilder(args);
 
 builder.Services.AddControllersWithViews();
 
-var connectionString = builder.Configuration.GetConnectionString("HydraSimDb");
-builder.Services.AddDbContext<HydraSimDbContext>(options =>
-    options.UseMySql(connectionString, new MySqlServerVersion(new Version(8, 0, 35))));
+var connectionString = builder.Configuration.GetConnectionString("HydraSimDb")
+    ?? throw new InvalidOperationException("Connection string 'HydraSimDb' not found.");
+builder.Services.AddSingleton(new MySqlConnectionFactory(connectionString));
 
 builder.Services.AddAuthentication(CookieAuthenticationDefaults.AuthenticationScheme)
     .AddCookie(options =>
@@ -31,16 +30,18 @@ builder.Services.AddAuthorization(options =>
 });
 
 builder.Services.AddScoped<ISimulationRepository, SimulationRepository>();
-builder.Services.AddScoped<UserRepository>();
+
+builder.Services.AddScoped<IUserRepository, UserRepository>();
 builder.Services.AddScoped<PasswordHasher>();
+builder.Services.AddScoped<IAuthService, AuthService>();
 
 var app = builder.Build();
 
 using (var scope = app.Services.CreateScope())
 {
-    var db = scope.ServiceProvider.GetRequiredService<HydraSimDbContext>();
-    db.Database.EnsureCreated();
-    SeedData.Seed(db);
+    var factory = scope.ServiceProvider.GetRequiredService<MySqlConnectionFactory>();
+    await DatabaseInitializer.EnsureCreatedAsync(factory);
+    await SeedData.SeedAsync(factory);
 }
 
 if (!app.Environment.IsDevelopment())

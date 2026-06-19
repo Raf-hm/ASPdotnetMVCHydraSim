@@ -1,4 +1,3 @@
-using System.ComponentModel.DataAnnotations.Schema;
 using Newtonsoft.Json;
 
 namespace HydraSim.Domain.Components
@@ -12,11 +11,9 @@ namespace HydraSim.Domain.Components
         public int CY { get; set; }
         public int ComponentId { get; set; }
 
-        [NotMapped]
         public int CurrentPressure { get; protected set; }
 
         [JsonIgnore]
-        [NotMapped]
         public List<HydraulicComponent> Outputs { get; } = new();
 
         protected HydraulicComponent(int cx, int cy)

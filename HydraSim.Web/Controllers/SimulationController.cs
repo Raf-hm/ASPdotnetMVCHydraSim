@@ -20,7 +20,7 @@ namespace HydraSim.Web.Controllers
 
             simulation.Run();
 
-            ViewBag.MaxPressure  = simulation.MaxPressure;
+            ViewBag.MaxPressure = simulation.MaxPressure;
             ViewBag.SimulationId = id;
             return View(simulation.Components);
         }
@@ -33,12 +33,14 @@ namespace HydraSim.Web.Controllers
 
             var component = simulation.Components.FirstOrDefault(c => c.ComponentId == componentId);
             if (component is Resistance resistance)
+            {
                 resistance.PressureDrop = newPressureDrop;
+                await _repo.UpdateComponentAsync(resistance);
+            }
 
-            await _repo.SaveChangesAsync();
             simulation.Run();
 
-            ViewBag.MaxPressure  = simulation.MaxPressure;
+            ViewBag.MaxPressure = simulation.MaxPressure;
             ViewBag.SimulationId = simulationId;
             return View("Run", simulation.Components);
         }
@@ -51,12 +53,14 @@ namespace HydraSim.Web.Controllers
 
             var component = simulation.Components.FirstOrDefault(c => c.ComponentId == componentId);
             if (component is Motor motor)
+            {
                 motor.RequiredPressure = newRequiredPressure;
+                await _repo.UpdateComponentAsync(motor);
+            }
 
-            await _repo.SaveChangesAsync();
             simulation.Run();
 
-            ViewBag.MaxPressure  = simulation.MaxPressure;
+            ViewBag.MaxPressure = simulation.MaxPressure;
             ViewBag.SimulationId = simulationId;
             return View("Run", simulation.Components);
         }
@@ -69,12 +73,14 @@ namespace HydraSim.Web.Controllers
 
             var component = simulation.Components.FirstOrDefault(c => c.ComponentId == componentId);
             if (component is ReliefValve rv)
+            {
                 rv.MaxPressure = newMaxPressure;
+                await _repo.UpdateComponentAsync(rv);
+            }
 
-            await _repo.SaveChangesAsync();
             simulation.Run();
 
-            ViewBag.MaxPressure  = simulation.MaxPressure;
+            ViewBag.MaxPressure = simulation.MaxPressure;
             ViewBag.SimulationId = simulationId;
             return View("Run", simulation.Components);
         }

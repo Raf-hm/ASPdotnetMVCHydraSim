@@ -1,5 +1,4 @@
 using System.Security.Claims;
-using HydraSim.DAL.Repositories;
 using HydraSim.Domain.Auth;
 using HydraSim.Web.Models;
 using Microsoft.AspNetCore.Authentication;
@@ -11,13 +10,11 @@ namespace HydraSim.Web.Controllers
 {
     public class AuthController : Controller
     {
-        private readonly UserRepository _users;
-        private readonly PasswordHasher _hasher;
+        private readonly IAuthService _auth;
 
-        public AuthController(UserRepository users, PasswordHasher hasher)
+        public AuthController(IAuthService auth)
         {
-            _users = users;
-            _hasher = hasher;
+            _auth = auth;
         }
 
         [HttpGet]
@@ -34,10 +31,10 @@ namespace HydraSim.Web.Controllers
         {
             if (!ModelState.IsValid) return View(model);
 
-            var user = await _users.GetByEmailAsync(model.Email);
-            if (user == null || !_hasher.Verify(model.Password, user.PasswordHash))
+            var user = await _auth.LoginAsync(model.Email, model.Password);
+            if (user == null)
             {
-                ModelState.AddModelError("", "Ongeldige e-mail of wachtwoord.");
+                ModelState.AddModelError("", "Invalid e-mail or password.");
                 return View(model);
             }
 
@@ -59,21 +56,14 @@ namespace HydraSim.Web.Controllers
         {
             if (!ModelState.IsValid) return View(model);
 
-            var existing = await _users.GetByEmailAsync(model.Email);
-            if (existing != null)
+            var result = await _auth.RegisterAsync(model.Email, model.Password);
+            if (!result.Success)
             {
-                ModelState.AddModelError("", "Dit e-mailadres is al in gebruik.");
+                ModelState.AddModelError("", result.ErrorMessage ?? "Registration failed.");
                 return View(model);
             }
 
-            var user = new User
-            {
-                Email = model.Email,
-                PasswordHash = _hasher.Hash(model.Password)
-            };
-            await _users.AddAsync(user);
-
-            await SignInAsync(user);
+            await SignInAsync(result.User!);
             return RedirectToAction("Index", "Home");
         }
 
