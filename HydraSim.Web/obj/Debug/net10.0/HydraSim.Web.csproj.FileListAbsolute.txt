@@ -95,9 +95,5 @@ C:\Users\rafhe\Documents\GitHub\ASPdotnetMVCHydraSim\HydraSim.Web\obj\Debug\net1
 C:\Users\rafhe\Documents\GitHub\ASPdotnetMVCHydraSim\HydraSim.Web\obj\Debug\net10.0\HydraSim.Web.pdb
 C:\Users\rafhe\Documents\GitHub\ASPdotnetMVCHydraSim\HydraSim.Web\obj\Debug\net10.0\HydraSim.Web.genruntimeconfig.cache
 C:\Users\rafhe\Documents\GitHub\ASPdotnetMVCHydraSim\HydraSim.Web\obj\Debug\net10.0\ref\HydraSim.Web.dll
-C:\Users\rafhe\Documents\GitHub\ASPdotnetMVCHydraSim\HydraSim.Web\bin\Debug\net10.0\Microsoft.EntityFrameworkCore.dll
-C:\Users\rafhe\Documents\GitHub\ASPdotnetMVCHydraSim\HydraSim.Web\bin\Debug\net10.0\Microsoft.EntityFrameworkCore.Abstractions.dll
-C:\Users\rafhe\Documents\GitHub\ASPdotnetMVCHydraSim\HydraSim.Web\bin\Debug\net10.0\Microsoft.EntityFrameworkCore.Relational.dll
 C:\Users\rafhe\Documents\GitHub\ASPdotnetMVCHydraSim\HydraSim.Web\bin\Debug\net10.0\MySqlConnector.dll
-C:\Users\rafhe\Documents\GitHub\ASPdotnetMVCHydraSim\HydraSim.Web\bin\Debug\net10.0\Pomelo.EntityFrameworkCore.MySql.dll
 C:\Users\rafhe\Documents\GitHub\ASPdotnetMVCHydraSim\HydraSim.Web\bin\Debug\net10.0\BCrypt-Net-Next.dll

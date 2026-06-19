@@ -14,7 +14,7 @@ using System.Reflection;
 [assembly: System.Reflection.AssemblyCompanyAttribute("HydraSim.Web")]
 [assembly: System.Reflection.AssemblyConfigurationAttribute("Debug")]
 [assembly: System.Reflection.AssemblyFileVersionAttribute("1.0.0.0")]
-[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+c4418cbb9c318164a82cdd3693570fbe583f4d79")]
+[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+c7da848eeed921635291c4570662a8ae87d76606")]
 [assembly: System.Reflection.AssemblyProductAttribute("HydraSim.Web")]
 [assembly: System.Reflection.AssemblyTitleAttribute("HydraSim.Web")]
 [assembly: System.Reflection.AssemblyVersionAttribute("1.0.0.0")]

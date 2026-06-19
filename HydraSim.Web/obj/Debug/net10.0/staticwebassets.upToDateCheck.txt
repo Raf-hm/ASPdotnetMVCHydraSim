@@ -10,6 +10,9 @@ wwwroot\Sprites\pump.png
 wwwroot\Sprites\resistance.png
 wwwroot\Sprites\sims\sim0.png
 wwwroot\Sprites\sims\sim1.png
+wwwroot\Sprites\sims\sim2.png
+wwwroot\Sprites\sims\sim3.png
+wwwroot\Sprites\sims\sim4.png
 wwwroot\Sprites\tank.png
 wwwroot\css\Library.css
 wwwroot\css\Simulation.css
